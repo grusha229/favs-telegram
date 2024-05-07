@@ -3,6 +3,7 @@ import { TonConnectButton } from '@tonconnect/ui-react';
 // import { useTonConnect } from './hooks/useTonConnect';
 // import { useCounterContract } from './hooks/useCounterContract';
 import '@twa-dev/sdk';
+import CatImage from './assets/cat.jpg';
 
 function App() {
   // const { connected } = useTonConnect();
@@ -12,7 +13,7 @@ function App() {
     <div className='App'>
       <div className='Container'>
         <TonConnectButton />
-        <img src='public/cat.jpg'/>
+        <img src={CatImage} />
 
         {/* <div className='Card'>
           <b>Counter Address</b>
