@@ -12,17 +12,18 @@ function App() {
     <div className='App'>
       <div className='Container'>
         <TonConnectButton />
+        <img src='public/cat.jpg'/>
 
-        <div className='Card'>
+        {/* <div className='Card'>
           <b>Counter Address</b>
           <div className='Hint'>{address?.slice(0, 30) + '...'}</div>
-        </div>
+        </div> */}
 
-        <div className='Card'>
+        {/* <div className='Card'>
           <b>Counter Value</b>
           <div>{value ?? 'Loading...'}</div>
-        </div>
-
+        </div> */}
+{/* 
         <a
           className={`Button ${connected ? 'Active' : 'Disabled'}`}
           onClick={() => {
@@ -30,7 +31,7 @@ function App() {
           }}
         >
           Increment
-        </a>
+        </a> */}
       </div>
     </div>
   );
