@@ -3,6 +3,8 @@ import { TonConnectButton } from '@tonconnect/ui-react';
 // import { useTonConnect } from './hooks/useTonConnect';
 // import { useCounterContract } from './hooks/useCounterContract';
 import '@twa-dev/sdk';
+import { useEffect, useState } from 'react';
+import MapService from './http/MapService';
 
 function App() {
   // const { connected } = useTonConnect();
@@ -10,6 +12,14 @@ function App() {
   //@ts-ignore
   const tg = window.Telegram.WebApp;
   // console.log(tg)
+
+  const [token , setToken ] = useState()
+
+  const handleClick = () => {
+    MapService.loginWithTelegram(tg?.initDataUnsafe?.user?.id)
+    //@ts-ignore
+      .then((resp) => setToken(resp) )
+  }
 
   return (
     <div className='App'>
@@ -40,6 +50,14 @@ function App() {
           <br/>
           {
             tg?.initDataUnsafe?.user?.username
+          }
+        </div>
+
+        <div className='Card'>
+          <b>token</b>
+          <br/>
+          {
+            token
           }
         </div>
         
