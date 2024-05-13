@@ -9,16 +9,41 @@ function App() {
   // const { connected } = useTonConnect();
   // const { value, address, sendIncrement } = useCounterContract();
 
+  let tg = window.Telegram.WebApp;
+  // console.log(tg)
+
   return (
     <div className='App'>
       <div className='Container'>
         <TonConnectButton />
-        <img src={CatImage} />
 
-        {/* <div className='Card'>
-          <b>Counter Address</b>
-          <div className='Hint'>{address?.slice(0, 30) + '...'}</div>
-        </div> */}
+        <button onClick={() => tg.expand()}>Клик клак</button>
+
+
+        <div className='Card'>
+          <b>id</b>
+          <br/>
+          {
+            tg?.initDataUnsafe?.user?.id
+          }
+        </div>
+
+        <div className='Card'>
+          <b>name</b>
+          <br/>
+          {
+            tg?.initDataUnsafe?.user?.first_name
+          }
+        </div>
+
+        <div className='Card'>
+          <b>username</b>
+          <br/>
+          {
+            tg?.initDataUnsafe?.user?.username
+          }
+        </div>
+        
 
         {/* <div className='Card'>
           <b>Counter Value</b>
