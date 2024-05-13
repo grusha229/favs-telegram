@@ -16,7 +16,7 @@ function App() {
   const [token , setToken ] = useState()
 
   const handleClick = () => {
-    MapService.loginWithTelegram(tg?.initDataUnsafe?.user?.id)
+    MapService.loginWithTelegram('1231312')
     //@ts-ignore
       .then((resp) => setToken(resp) )
   }
