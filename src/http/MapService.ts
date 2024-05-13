@@ -15,13 +15,13 @@ export default class MapService {
 
 
 
-    static async loginWithTelegram(id: string) :Promise<AxiosResponse<TMapApiResponse[]>> {
+    static async loginWithTelegram(id: number) :Promise<AxiosResponse<TMapApiResponse[]>> {
         const config: AxiosRequestConfig = {
             params: {
                 telegramID: id
             }
         }
-        return api.post('/tg/login', config)
+        return api.post(`/tg/login?telegramID=${id}`, config)
     }
 
     // static async getPlacesByCity(city: string, category?: TCategory, filter?: string) :Promise<AxiosResponse<TMapApiResponse[]>> {
