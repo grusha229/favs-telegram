@@ -1,10 +1,10 @@
-import { LatLng } from "react-native-maps"
+// import { LatLng } from "react-native-maps"
 
 export type TMapApiResponse = {
     address: string,
     category: string,
     city: string,
-    coordinates: LatLng,
+    // coordinates: LatLng,
     description: string,
     geoHash: string,
     googleMapsInfo: {
@@ -33,7 +33,7 @@ export type TCategory = {
 
 export type TCityApiResponse = {
   categories: TCategory[],
-  center: LatLng,
+  // center: LatLng,
   imageURL: string,
   name: string,
 }
