@@ -21,7 +21,7 @@ export default class MapService {
                 telegramID: id
             }
         }
-        return api.get('/tg/login', config)
+        return api.post('/tg/login', config)
     }
 
     // static async getPlacesByCity(city: string, category?: TCategory, filter?: string) :Promise<AxiosResponse<TMapApiResponse[]>> {
