@@ -17,9 +17,9 @@ export default class MapService {
 
     static async loginWithTelegram(id: number) :Promise<AxiosResponse<TMapApiResponse[]>> {
         const config: AxiosRequestConfig = {
-            params: {
-                telegramID: id
-            }
+            // params: {
+            //     telegramID: id
+            // }
         }
         return api.post(`/tg/login?telegramID=${id}`, config)
     }
