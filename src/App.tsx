@@ -26,7 +26,7 @@ function App() {
       <div className='Container'>
         <TonConnectButton />
 
-        <button onClick={() => tg.expand()}>Клик клак</button>
+        <button onClick={handleClick}>Клик клак</button>
 
 
         <div className='Card'>
