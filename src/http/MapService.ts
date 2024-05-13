@@ -4,14 +4,14 @@ import { TCategory, TCityApiResponse, TMapApiResponse } from "../models/maps";
 
 export default class MapService {
 
-    static async getAvalibleCities() :Promise<AxiosResponse<TCityApiResponse[]>> {
-        const config: AxiosRequestConfig = {
-            headers: {
-                Authorization: auth.currentUser.stsTokenManager.accessToken
-            },
-        }
-        return api.get(`/cities`, config)
-    }
+    // static async getAvalibleCities() :Promise<AxiosResponse<TCityApiResponse[]>> {
+    //     const config: AxiosRequestConfig = {
+    //         headers: {
+    //             Authorization: auth.currentUser.stsTokenManager.accessToken
+    //         },
+    //     }
+    //     return api.get(`/cities`, config)
+    // }
 
 
 
@@ -24,40 +24,40 @@ export default class MapService {
         return api.get('/tg/login', config)
     }
 
-    static async getPlacesByCity(city: string, category?: TCategory, filter?: string) :Promise<AxiosResponse<TMapApiResponse[]>> {
-        const config: AxiosRequestConfig = {
-            headers: {
-                Authorization: auth.currentUser.stsTokenManager.accessToken
-            },
-            params: {
-                city: city,
-                category: category,
-                labels: filter
-            },
-        }
-        return api.get('/places', config)
-    }
+    // static async getPlacesByCity(city: string, category?: TCategory, filter?: string) :Promise<AxiosResponse<TMapApiResponse[]>> {
+    //     const config: AxiosRequestConfig = {
+    //         headers: {
+    //             Authorization: auth.currentUser.stsTokenManager.accessToken
+    //         },
+    //         params: {
+    //             city: city,
+    //             category: category,
+    //             labels: filter
+    //         },
+    //     }
+    //     return api.get('/places', config)
+    // }
 
-    static async getPlaceInfo(id: string) :Promise<AxiosResponse<TMapApiResponse>> {
-        const config: AxiosRequestConfig = {
-            headers: {
-                Authorization: auth.currentUser.stsTokenManager.accessToken
-            },
-            params: {
-                id: id
-            }
-        }
-        return api.get(`/places/${id}`, config)
-    }
+    // static async getPlaceInfo(id: string) :Promise<AxiosResponse<TMapApiResponse>> {
+    //     const config: AxiosRequestConfig = {
+    //         headers: {
+    //             Authorization: auth.currentUser.stsTokenManager.accessToken
+    //         },
+    //         params: {
+    //             id: id
+    //         }
+    //     }
+    //     return api.get(`/places/${id}`, config)
+    // }
 
-    static async getFiltersList() :Promise<AxiosResponse<string[]>> {
-        const config: AxiosRequestConfig = {
-            headers: {
-                Authorization: auth.currentUser.stsTokenManager.accessToken
-            },
-        }
-        return api.get(`/filter`, config)
-    }
+    // static async getFiltersList() :Promise<AxiosResponse<string[]>> {
+    //     const config: AxiosRequestConfig = {
+    //         headers: {
+    //             Authorization: auth.currentUser.stsTokenManager.accessToken
+    //         },
+    //     }
+    //     return api.get(`/filter`, config)
+    // }
 }
 
 // currentUser:  {
