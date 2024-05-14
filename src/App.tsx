@@ -52,7 +52,7 @@ function App() {
       <div className='Container'>
         <TonConnectButton />
 
-        <button onClick={handleClick}>Клик клак найти заведения в милане</button>
+        <button onClick={handleClick}>Клик клак найти заведения рядом с вами</button>
         {
           places && places.map((place) => (
             <div className='Card'>
