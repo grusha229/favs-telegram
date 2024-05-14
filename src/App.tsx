@@ -16,11 +16,16 @@ function App() {
   const [token , setToken ] = useState(null);
   const [message , setMessage ] = useState(null);
   const [places , setPlaces ] = useState(null);
+  const [coordinates, setCoordinates] = useState<Partial<GeolocationCoordinates>>(null)
   const ID = tg?.initDataUnsafe?.user?.id ?? 123
   useEffect(() => {
 
     navigator.geolocation.getCurrentPosition((position) => {
-      setMessage(position.coords.latitude+';'+position.coords.longitude)
+      setMessage(position.coords.latitude+';'+position.coords)
+      setCoordinates({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude
+      })
     })
 
     if ("geolocation" in navigator) {
@@ -34,12 +39,12 @@ function App() {
   }, [])
 
   const handleClick = () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setMessage(position.coords.latitude+';'+position.coords.longitude)
-    })
-    // MapService.getPlacesWithTelegram(token, ID)
-    //   .then((res) => res.data)
-    //   .then((data) => setPlaces(data))
+    // navigator.geolocation.getCurrentPosition((position) => {
+    //   setMessage(position.coords.latitude+';'+position.coords.longitude)
+    // })
+    MapService.getPlacesWithTelegram(token, ID, {latitude: coordinates.latitude, longitude: coordinates.longitude, latitudeDelta: 0.0922, longitudeDelta: 0.0421})
+      .then((res) => res.data)
+      .then((data) => setPlaces(data))
   }
 
   return (
@@ -65,8 +70,20 @@ function App() {
             tg?.initDataUnsafe?.user?.id
           }
         </div>
-        {
-          message
+
+        { coordinates &&
+          <div className='Card'>
+            Your position:
+            <br/>
+            lat:
+            {
+              coordinates?.latitude
+            }
+            ,lon:
+            {
+              coordinates?.longitude
+            }
+          </div>
         }
 
         <div className='Card'>
