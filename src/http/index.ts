@@ -4,7 +4,7 @@ import axios from 'axios'
 export const API_URL = 'https://favs.site/api/v1/'
 
 const api = axios.create({
-    withCredentials: true,
+    withCredentials: false,
     baseURL: API_URL
 })
 
