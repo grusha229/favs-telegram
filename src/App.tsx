@@ -19,6 +19,10 @@ function App() {
   const ID = tg?.initDataUnsafe?.user?.id ?? 123
   useEffect(() => {
 
+    navigator.geolocation.getCurrentPosition((position) => {
+      setMessage(position.coords.latitude+';'+position.coords.longitude)
+    })
+
     if ("geolocation" in navigator) {
       setMessage('ok')
     } else {
@@ -30,9 +34,12 @@ function App() {
   }, [])
 
   const handleClick = () => {
-    MapService.getPlacesWithTelegram(token, ID)
-      .then((res) => res.data)
-      .then((data) => setPlaces(data))
+    navigator.geolocation.getCurrentPosition((position) => {
+      setMessage(position.coords.latitude+';'+position.coords.longitude)
+    })
+    // MapService.getPlacesWithTelegram(token, ID)
+    //   .then((res) => res.data)
+    //   .then((data) => setPlaces(data))
   }
 
   return (
