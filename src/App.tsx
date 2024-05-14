@@ -13,12 +13,18 @@ function App() {
   const tg = window.Telegram.WebApp;
   // console.log(tg)
 
-  const [token , setToken ] = useState()
+  const [token , setToken ] = useState(null);
+  const [places , setPlaces ] = useState(null);
+  const ID = tg?.initDataUnsafe?.user?.id ?? 123
+  useEffect(() => {
+    MapService.loginWithTelegram(ID)
+      .then((resp) => setToken(resp.data) )
+  }, [])
 
   const handleClick = () => {
-    MapService.loginWithTelegram(1231312)
-    //@ts-ignore
-      // .then((resp) => setToken(resp) )
+    MapService.getPlacesWithTelegram(token, ID)
+      .then((res) => res.data)
+      .then((data) => setPlaces(data))
   }
 
   return (
@@ -26,8 +32,16 @@ function App() {
       <div className='Container'>
         <TonConnectButton />
 
-        <button onClick={handleClick}>Клик клак</button>
-
+        <button onClick={handleClick}>Клик клак найти заведения в милане</button>
+        {
+          places && places.map((place) => (
+            <div className='Card'>
+              <b>{place.name}</b>
+              <br/>
+              {place.address}
+            </div>
+          ))
+        }
 
         <div className='Card'>
           <b>id</b>

@@ -1,6 +1,6 @@
 import {AxiosRequestConfig, AxiosResponse } from "axios";
 import api from ".";
-import { TCategory, TCityApiResponse, TMapApiResponse } from "../models/maps";
+import { TMapApiResponse } from "../models/maps";
 
 export default class MapService {
 
@@ -15,13 +15,23 @@ export default class MapService {
 
 
 
-    static async loginWithTelegram(id: number) :Promise<AxiosResponse<TMapApiResponse[]>> {
+    static async loginWithTelegram(id: number) :Promise<AxiosResponse<string>> {
+
+        return api.post(`/tg/login?telegramID=${id}`)
+    }
+
+    static async getPlacesWithTelegram(token: string, id: number) :Promise<AxiosResponse<string>> {
+
         const config: AxiosRequestConfig = {
-            // params: {
-            //     telegramID: id
-            // }
+            headers: {
+                Authorization: token,
+                'X-Telegram-ID': id
+            },
+            params: {
+                city: "milan"
+            }
         }
-        return api.post(`/tg/login?telegramID=${id}`, config)
+        return api.get(`/tg/places`,config)
     }
 
     // static async getPlacesByCity(city: string, category?: TCategory, filter?: string) :Promise<AxiosResponse<TMapApiResponse[]>> {
