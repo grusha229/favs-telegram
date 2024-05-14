@@ -14,9 +14,17 @@ function App() {
   // console.log(tg)
 
   const [token , setToken ] = useState(null);
+  const [message , setMessage ] = useState(null);
   const [places , setPlaces ] = useState(null);
   const ID = tg?.initDataUnsafe?.user?.id ?? 123
   useEffect(() => {
+
+    if ("geolocation" in navigator) {
+      setMessage('ok')
+    } else {
+      setMessage('not ok')
+    }
+
     MapService.loginWithTelegram(ID)
       .then((resp) => setToken(resp.data) )
   }, [])
@@ -50,6 +58,9 @@ function App() {
             tg?.initDataUnsafe?.user?.id
           }
         </div>
+        {
+          message
+        }
 
         <div className='Card'>
           <b>name</b>
