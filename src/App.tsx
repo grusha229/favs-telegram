@@ -18,7 +18,7 @@ function App() {
   const handleClick = () => {
     MapService.loginWithTelegram(1231312)
     //@ts-ignore
-      .then((resp) => setToken(resp) )
+      // .then((resp) => setToken(resp) )
   }
 
   return (
