@@ -1,41 +1,37 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 
 export type TRoles  = 'manager' | 'executor' | 'admin' | null
 
 export interface IAuthState {
-    isAuth: boolean,
-    id: string | null,
-    name: string | null,
-    surname: string | null,
-    role: TRoles;
+    token: string;
+    telegramID: number;
   }
 
 const initialState: IAuthState = {
-    isAuth: false,
-    id: null,
-    name: null,
-    surname: null,
-    role: null
+    token: null,
+    telegramID: null,
 }
 
 export const AuthSlice = createSlice({
     name: "authentication",
     initialState,
     reducers: {
-        setAuthentication: (state, action) => {
-            state.isAuth = true;
-            state.id = action.payload.id;
-            state.name = action.payload.name;
-            state.surname = action.payload.surname;
-            state.role = action.payload.role
+        setToken: (state, action) => {
+            state.token = action.payload
         },
-        resetAuthentication: (state) => {
-            state.isAuth = false;
+        setUser: (state, action) => {
+            state.telegramID = action.payload
+        },
+        resetToken: (state) => {
+            state.token = null;
+        },
+        resetUser: (state) => {
+            state.telegramID = null;
         }
     }
 })
 
-export const {setAuthentication, resetAuthentication} = AuthSlice.actions
+export const {setToken, setUser, resetToken, resetUser} = AuthSlice.actions
 
 export default AuthSlice.reducer

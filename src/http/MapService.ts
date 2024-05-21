@@ -13,14 +13,7 @@ export default class MapService {
     //     return api.get(`/cities`, config)
     // }
 
-
-
-    static async loginWithTelegram(id: number) :Promise<AxiosResponse<string>> {
-
-        return api.post(`/tg/login?telegramID=${id}`)
-    }
-
-    static async getPlacesWithTelegram(token: string, id: number, params) :Promise<AxiosResponse<string>> {
+    static async getPlacesWithTelegram(token: string, id: number, params) :Promise<AxiosResponse> {
 
         const config: AxiosRequestConfig = {
             headers: {
