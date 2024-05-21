@@ -5,7 +5,7 @@
 }
 
 .App {
-  /* height: 100vh; */
+  height: 100vh;
   background-color: var(--tg-theme-bg-color);
   color: var(--tg-theme-text-color);
 }
@@ -52,7 +52,7 @@
   background-color: white;
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
     --tg-theme-bg-color: #131415;
     --tg-theme-text-color: #fff;
@@ -64,10 +64,8 @@
     background-color: var(--tg-theme-bg-color);
     filter: brightness(165%);
   }
+}
 
-  .CounterValue {
-    border-radius: 16px;
-    color: white;
-    padding: 10px;
-  }
-} */
+h1, h2, p {
+  margin: 0;
+}

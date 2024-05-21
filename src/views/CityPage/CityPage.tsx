@@ -4,7 +4,9 @@ export default function CityPage() {
     // console.log('user ',window.navigator?.userAgentData?.platform);
   return (
     <div>
-      <h1>fsdfsdß</h1>
+        <div className='Container'>
+            <h1>City page</h1>
+        </div>
     </div>
   )
 }

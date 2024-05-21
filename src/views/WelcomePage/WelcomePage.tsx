@@ -1,19 +1,11 @@
-import { TonConnectButton } from '@tonconnect/ui-react';
+// import { TonConnectButton } from '@tonconnect/ui-react';
 // import { useTonConnect } from './hooks/useTonConnect';
 // import { useCounterContract } from './hooks/useCounterContract';
 import '@twa-dev/sdk';
 import { useCallback, useEffect, useState } from 'react';
 import MapService from '../../http/MapService';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/Button';
-
-const getLocationPromise = new Promise<GeolocationPosition>((resolve, reject) => {
-  navigator.geolocation.getCurrentPosition((position) => {
-    resolve(position)
-  }, (error) => {
-    reject(error);
-  })
-});
 
 function WelcomePage() {
   // const { connected } = useTonConnect();
@@ -28,37 +20,21 @@ function WelcomePage() {
   const [coordinates, setCoordinates] = useState<Partial<GeolocationCoordinates>>(null)
   const navigate = useNavigate();
   const ID = tg?.initDataUnsafe?.user?.id ?? 123
+
   useEffect(() => {
-
-    if ("geolocation" in navigator) {
-      setMessage('ok')
-    } else {
-      setMessage('not ok')
-    }
-
     MapService.loginWithTelegram(ID)
       .then((resp) => setToken(resp.data) )
   }, [])
 
-
-  const handleClick = () => {
-    // navigator.geolocation.getCurrentPosition((position) => {
-    //   setMessage(position.coords.latitude+';'+position.coords.longitude)
-    // })
-    MapService.getPlacesWithTelegram(token, ID, {latitude: coordinates.latitude, longitude: coordinates.longitude, latitudeDelta: 0.0922, longitudeDelta: 0.0421})
-      .then((res) => res.data)
-      .then((data) => {
-        if (data) {
-          setPlaces(data)
-        } else {
-          throw new Error('Не найдено')
-        }
-      })
-
-      .catch((e) => console.log(e))
-  }
-
   const onClick = useCallback(() => {
+    const getLocationPromise = new Promise<GeolocationPosition>((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition((position) => {
+        resolve(position)
+      }, (error) => {
+        reject(error);
+      })
+    });
+
     getLocationPromise
       .then((position) => {
         setCoordinates({

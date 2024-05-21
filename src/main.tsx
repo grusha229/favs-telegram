@@ -17,11 +17,17 @@ const basePathname = import.meta.env.BASE_URL
 const router = createBrowserRouter([
   {
     path: `${basePathname}`,
-    element: <WelcomePage/>,
-  },
-  {
-    path: `${basePathname}city`,
-    element: <CityPage/>
+    element: <App/>,
+    children: [
+      {
+        path: `${basePathname}`,
+        element: <WelcomePage/>,
+      },
+      {
+        path: `${basePathname}city`,
+        element: <CityPage/>
+      },
+    ]
   },
 ]);
 
