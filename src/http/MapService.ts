@@ -1,6 +1,6 @@
 import {AxiosRequestConfig, AxiosResponse } from "axios";
 import api from ".";
-import { TMapApiResponse } from "../models/maps";
+import { TMapApiResponse } from "../models/Places";
 
 export default class MapService {
 

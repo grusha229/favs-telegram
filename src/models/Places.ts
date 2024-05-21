@@ -1,6 +1,6 @@
 // import { LatLng } from "react-native-maps"
 
-export type TMapApiResponse = {
+export interface IPlaceApiResponse {
     address: string,
     category: string,
     city: string,
