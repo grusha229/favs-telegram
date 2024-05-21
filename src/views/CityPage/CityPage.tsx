@@ -3,11 +3,12 @@ import { getLocationPromise } from '../../utils/location'
 import MapService from '../../http/MapService'
 import { useSelector } from 'react-redux'
 import { IStateInterface } from '../../store/store'
+import { IPlaceApiResponse } from '../../models/Places'
 
 export default function CityPage() {
     // console.log('user ',window.navigator?.userAgentData?.platform);
     const [coordinates, setCoordinates] = useState<Partial<GeolocationCoordinates>>(null)
-    const [places, setPlaces] = useState<[]>(null)
+    const [places, setPlaces] = useState<IPlaceApiResponse[]>(null)
     const USER_TOKEN = useSelector((state: IStateInterface) => state.authentication.token)
     const USER_ID = useSelector((state: IStateInterface) => state.authentication.telegramID)
 
