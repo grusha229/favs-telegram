@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { getLocationPromise } from '../../utils/location'
+import React, { useEffect, useMemo, useState } from 'react'
+import { getDelta, getLocationPromise } from '../../utils/location'
 import MapService from '../../http/MapService'
 import { useSelector } from 'react-redux'
 import { IStateInterface } from '../../store/store'
@@ -13,26 +13,28 @@ export default function CityPage() {
     const USER_TOKEN = useSelector((state: IStateInterface) => state.authentication.token)
     const USER_ID = useSelector((state: IStateInterface) => state.authentication.telegramID)
 
+    const region = useMemo(() => {
+        return getDelta(coordinates?.latitude, coordinates?.longitude, 5000)
+    }, [coordinates])
+
     useEffect(() => {
         getLocationPromise
             .then((position) => setCoordinates(position?.coords))
     },[])
 
     useEffect(() => {
-        MapService.getPlacesWithTelegram(USER_TOKEN, USER_ID, {
-            latitude: coordinates?.latitude,
-            longitude: coordinates?.longitude
-        })
-        .then((res) => res.data)
-        .then((places) => {
-            console.log(places)
-            setPlaces(places)
-        })
-        .catch((e) => {
-            console.error('errorr!', e)
-            setError(`${e?.response?.status}, ${e?.response?.statusText}`)
-        })
-    },[USER_TOKEN, USER_ID, coordinates])
+        region.latitudeDelta && region.longitudeDelta &&
+            MapService.getPlacesWithTelegram(USER_TOKEN, USER_ID, region)
+            .then((res) => res.data)
+            .then((places) => {
+                console.log(places)
+                setPlaces(places)
+            })
+            .catch((e) => {
+                console.error('error!', e)
+                setError(`${e?.response?.status}, ${e?.response?.statusText}`)
+            })
+    },[USER_TOKEN, USER_ID, region])
 
   return (
     <div>
