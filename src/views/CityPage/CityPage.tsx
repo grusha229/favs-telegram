@@ -4,6 +4,8 @@ import MapService from '../../http/MapService'
 import { useSelector } from 'react-redux'
 import { IStateInterface } from '../../store/store'
 import { IPlaceApiResponse } from '../../models/Places'
+import PlaceItem from '../../components/PlaceItem/PlaceItem'
+import styles from "./CityPage.module.scss"
 
 export default function CityPage() {
     // console.log('user ',window.navigator?.userAgentData?.platform);
@@ -50,17 +52,35 @@ export default function CityPage() {
                     </div>
                 </>
             }
-            {places?.map((place) => (
-                    <div className='Card'>
-                        {place?.name}
-                    </div>
-                ))
-            }
+            <div className={styles['slider']}>
+                {places?.map((place) => (
+                    <PlaceItem
+                        key={place.id}
+                        name={place.name}
+                        id={place.id}
+                        type={place.category}
+                        address={place.address}
+                    />
+                ))}
+                <PlaceItem
+                        name='test'
+                        id={'214124'}
+                        type={'test'}
+                        address={'test'}
+                    />
+                    <PlaceItem
+                        name='test'
+                        id={'2141224'}
+                        type={'test'}
+                        address={'test'}
+                    />
+            </div>
             {error && 
                     <div className='Card'>
                             {error}
                     </div>
             }
+            
         </div>
     </div>
   )

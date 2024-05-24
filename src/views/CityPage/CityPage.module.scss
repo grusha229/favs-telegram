@@ -1,0 +1,11 @@
+.slider {
+    display: grid;
+    // flex-direction: row;
+    grid-template-columns: 1fr 1fr;
+
+    flex-direction: row;
+    gap: 8px;
+    overflow-x: scroll;
+    max-width: 500px;
+    width: 100%;
+}
