@@ -9,13 +9,14 @@ export interface IProps {
     address: string,
     id: string,
     imgSrc?: string,
+    className?: string
 }
 
 export default function PlaceItem(props: IProps) {
     const {name, type, address, id, imgSrc} = props;
     const imageSource = imgSrc ?? errorImage;
   return (
-    <Link to={`/cities/${id}`} className={styles['card']}>
+    <Link to={`/cities/${id}`} className={[styles['card'], props?.className].join(' ')}>
         <div className={styles['card-container']}>
             <div className={styles['image-container']}>
                 <img 
