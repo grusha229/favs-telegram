@@ -4,7 +4,10 @@
     flex-direction: row;
     gap: 16px;
     overflow-x: scroll;
-    width: 100%;
+
+    padding-left: 15px;
+    padding-right: 15px;
+    width: calc(100% - 30px);
 
     &--item {
         flex: 0 0 250px;

@@ -1,19 +1,23 @@
 import {AxiosRequestConfig, AxiosResponse } from "axios";
 import api from ".";
+import { IPlaceApiResponse } from "../models/Places";
 // import { IPlaceApiResponse } from "../models/Places";
 
+export interface IMapParams {
+    latitude: number,
+    longitude: number,
+    latitudeDelta: number,
+    longitudeDelta: number,
+}
 export default class MapService {
-
-    // static async getAvalibleCities() :Promise<AxiosResponse<TCityApiResponse[]>> {
-    //     const config: AxiosRequestConfig = {
-    //         headers: {
-    //             Authorization: auth.currentUser.stsTokenManager.accessToken
-    //         },
-    //     }
-    //     return api.get(`/cities`, config)
-    // }
-
-    static async getPlacesWithTelegram(token: string, id: number, params) :Promise<AxiosResponse> {
+    /**
+     * Method for recieving places list 
+     * @param token security token
+     * @param id telegram id
+     * @param params query params {@link IMapParams}
+     * @returns Promise<AxiosResponse>
+     */
+    static async getPlacesWithTelegram(token: string, id: number, params: IMapParams) :Promise<AxiosResponse> {
 
         const config: AxiosRequestConfig = {
             headers: {
@@ -23,6 +27,22 @@ export default class MapService {
             params: params
         }
         return api.get(`/tg/places`,config)
+    }
+    /**
+     * Method for recieving place data
+     * @param token security token
+     * @param id telegram id
+     * @param place_id place id
+     * @returns 
+     */
+    static async getPlaceInfo(token: string, id: number, place_id: string) :Promise<AxiosResponse<IPlaceApiResponse>> {
+        const config: AxiosRequestConfig = {
+            headers: {
+                Authorization: token,
+                'X-Telegram-ID': id
+            },
+        }
+        return api.get(`/tg/places/${place_id}`,config)
     }
 
     // static async getPlacesByCity(city: string, category?: TCategory, filter?: string) :Promise<AxiosResponse<TMapApiResponse[]>> {
