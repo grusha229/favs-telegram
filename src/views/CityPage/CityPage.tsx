@@ -64,7 +64,7 @@ export default function CityPage() {
                 />
             ))}
         </Slider>
-        {(error?.response?.status === 401 || error?.response?.status === 500) &&
+        {(error?.response?.status === 401 || error?.response?.status === 404 || error?.response?.status === 500) &&
             <Slider>
                     <PlaceItem
                         name='test'
@@ -95,7 +95,7 @@ export default function CityPage() {
         <div className='Container'>
             {error && 
                 <div className='Card'>
-                    {error.response.status+ ' ошибка, сверху тестовые данные'}
+                    {error.response.status+ ' ошибка, сверху тестовые данные (для отладки)'}
                 </div>
             }
         </div>
