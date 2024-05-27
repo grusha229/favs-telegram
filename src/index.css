@@ -1,12 +1,30 @@
 :root {
-  --tg-theme-bg-color: #efeff3;
-  --tg-theme-button-color: #63d0f9;
-  --tg-theme-button-text-color: black;
+  --tg-theme-bg-color: #F4F4F7;
+  --tg-theme-text-color: #707579;
+  --tg-theme-button-color: #007AFF;
+  --tg-theme-button-text-color: #FFFFFF;
+  --tg-theme-card-background-color: #FFFFFF;
+  --tg-theme-card-text-color: #000000;
+  --tg-theme-card-subtext-color: #707579;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --tg-theme-bg-color: #131415;
+    --tg-theme-text-color: #fff;
+    --tg-theme-button-color: #32a6fb;
+
+    --tg-theme-button-text-color: #000000;
+    --tg-theme-card-background-color: #282828;
+    --tg-theme-card-text-color: #fff;
+    --tg-theme-card-subtext-color: #707579;
+  }
 }
 
 .App {
   background-color: var(--tg-theme-bg-color);
   color: var(--tg-theme-text-color);
+  height: 100vh;
 }
 
 .Container {
@@ -48,23 +66,8 @@
   width: 100%;
   padding: 10px 20px;
   border-radius: 10px;
-  background-color: white;
+  background-color: var(--tg-theme-card-background-color);
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --tg-theme-bg-color: #131415;
-    --tg-theme-text-color: #fff;
-    --tg-theme-button-color: #32a6fb;
-    --tg-theme-button-text-color: #fff;
-  }
-
-  .Card {
-    background-color: var(--tg-theme-bg-color);
-    filter: brightness(165%);
-  }
-}
-
 h1, h2, p {
   margin: 0;
 }

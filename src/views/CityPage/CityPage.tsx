@@ -56,6 +56,7 @@ export default function CityPage() {
         <Slider>
             {places?.map((place) => (
                 <PlaceItem
+                    imgSrc={place.imagePreview}
                     key={place.id}
                     name={place.name}
                     id={place.id}

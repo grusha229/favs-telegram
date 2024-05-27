@@ -14,7 +14,7 @@ export interface IProps {
 
 export default function PlaceItem(props: IProps) {
     const {name, type, address, id, imgSrc} = props;
-    const imageSource = imgSrc ?? errorImage;
+    const imageSource = imgSrc ? imgSrc : errorImage;
     const basePathname = import.meta.env.BASE_URL
 
   return (
