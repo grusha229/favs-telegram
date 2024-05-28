@@ -42,7 +42,10 @@ const router = createBrowserRouter([
         path: `${basePathname}report-issue`,
       },
       {
-          path: `${basePathname}report-issue/:place_id`,
+        path: `${basePathname}report-issue/:place_id`,
+      },
+      {
+          path: `${basePathname}place/:place_id/report-issue`,
           element: <ReportIssuePage/>
       }
     ]

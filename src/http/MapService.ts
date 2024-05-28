@@ -89,7 +89,7 @@ export default class MapService {
                 'X-Telegram-ID': id
             },
         }
-        return api.post(`/tg/places/${place_id}/report`, reportBody, config)
+        return api.post(`/tg/places/${place_id}/reports`, reportBody, config)
     }
 
     // static async getPlacesByCity(city: string, category?: TCategory, filter?: string) :Promise<AxiosResponse<TMapApiResponse[]>> {

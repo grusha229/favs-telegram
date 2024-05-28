@@ -24,9 +24,9 @@ export default function ReportIssuePage() {
         alert(`You reported: ${selectedOption}`);
         MapService.reportPlace(USER_TOKEN, USER_ID, PLACE_ID,
             {description: selectedOption, reported_by: USER_ID.toString()}).then(response => {
-            console.log('Report successful:', response.data);
+            alert(`Report successful: ${response.data}`);
         }).catch(error => {
-            console.error('Error reporting place:', error);
+            alert(`Error reporting place: ${error}`);
         });
     };
 
