@@ -3,8 +3,10 @@ import MapService from '../../http/MapService'
 import { useSelector } from 'react-redux'
 import { IStateInterface } from '../../store/store'
 import { IPlaceApiResponse } from '../../models/Places'
-// import styles from "./CityPage.module.scss"
+import styles from "./PlacePage.module.scss"
 import { useParams } from 'react-router-dom'
+import errorImage from "../../assets/noImage.jpg";
+import NavButton from '../../components/NavButton/NavButton'
 
 export default function PlacePage() {
     const params = useParams();
@@ -13,16 +15,6 @@ export default function PlacePage() {
     const USER_ID = useSelector((state: IStateInterface) => state.authentication.telegramID)
     const PLACE_ID = params?.place_id
     const [ placeData, setPlaceData ] = useState<IPlaceApiResponse>(null)
-
-
-    // const region = useMemo(() => {
-    //     return getDelta(coordinates?.latitude, coordinates?.longitude, 5000)
-    // }, [coordinates])
-
-    // useEffect(() => {
-    //     getLocationPromise
-    //         .then((position) => setCoordinates(position?.coords))
-    // },[])
 
     useEffect(() => {
         MapService.getPlaceInfo(USER_TOKEN, USER_ID, PLACE_ID)
@@ -37,27 +29,39 @@ export default function PlacePage() {
         })
     },[USER_TOKEN, USER_ID])
 
+    const imageSource = placeData?.photosUrl ? placeData?.photosUrl[0] : errorImage;
+
   return (
     <div>
-        <div className='Container'>
-            <h1>Laptop friendly places</h1>
-            {placeData && Object.keys(placeData).map((value) => {
-                if ((typeof placeData[value] === "string") || (typeof placeData[value] === "number")) {
-                    return (
-                        <div className='Card'>
-                            {placeData[value]}
-                        </div>
-                    )
+            <div className={styles['image-container']}>
+                <img 
+                    className={styles['image']}
+                    src={imageSource}
+                    alt=''
+                />
+            </div>
+            <div className={styles['container']}>
+                <div className={styles['heading']}>
+                    <div className={styles['heading-name']}>{placeData?.name}</div>
+                    <div className={styles['heading-address']}>{placeData?.address}</div>
+                </div>
+                {placeData?.website &&
+                    <div className={styles['nav-buttons']}>
+                        {placeData?.website && 
+                            <NavButton
+                                type="website"
+                                link={placeData?.website}
+                            />
+                        }
+                    </div>
                 }
-            })
-            }
+            </div>
             {error && 
                 <div className='Card'>
                         {error}
                 </div>
             }
             
-        </div>
     </div>
   )
 }

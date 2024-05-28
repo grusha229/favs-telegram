@@ -1,6 +1,12 @@
+@import url('./fonts.css');
+
+* {
+  box-sizing: border-box;
+}
+
 :root {
-  --tg-theme-bg-color: #F4F4F7;
-  --tg-theme-text-color: #707579;
+  --tg-theme-bg-color: #707579;
+  --tg-theme-text-color: #131415;
   --tg-theme-button-color: #007AFF;
   --tg-theme-button-text-color: #FFFFFF;
   --tg-theme-card-background-color: #FFFFFF;
@@ -28,11 +34,9 @@
 }
 
 .Container {
-  padding: 2rem;
   max-width: 500px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
   align-items: center;
   margin: 0 auto;
   text-align: center;
@@ -68,11 +72,13 @@
   border-radius: 10px;
   background-color: var(--tg-theme-card-background-color);
 }
+
 h1, h2, p {
   margin: 0;
+  font-family: 'SF UI Text';
 }
-
 
 a {
   text-decoration: none;
+  color: var(--tg-theme-text-color);
 }
