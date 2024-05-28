@@ -2,9 +2,18 @@ import React, { useState, FormEvent } from 'react';
 import styles from './ReportIssuePage.module.scss';
 import optionStyles from '../../components/Option/Option.module.scss';
 import Option from '../../components/Option/Option.tsx';
+import { useParams } from 'react-router-dom'
+import {useSelector} from "react-redux";
+import {IStateInterface} from "../../store/store";
+import MapService  from "../../http/MapService.ts";
 
 export default function ReportIssuePage() {
     const [selectedOption, setSelectedOption] = useState<string>('');
+
+    const params = useParams();
+    const USER_TOKEN = useSelector((state: IStateInterface) => state.authentication.token)
+    const USER_ID = useSelector((state: IStateInterface) => state.authentication.telegramID)
+    const PLACE_ID = params?.place_id
 
     const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSelectedOption(event.target.value);
@@ -13,7 +22,12 @@ export default function ReportIssuePage() {
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
         alert(`You reported: ${selectedOption}`);
-        // Здесь вы можете добавить логику для отправки отчета на сервер
+        MapService.reportPlace(USER_TOKEN, USER_ID, PLACE_ID,
+            {description: selectedOption, reported_by: USER_ID.toString()}).then(response => {
+            console.log('Report successful:', response.data);
+        }).catch(error => {
+            console.error('Error reporting place:', error);
+        });
     };
 
     const options = [
@@ -23,7 +37,6 @@ export default function ReportIssuePage() {
         'Temp closed',
         'Perm closed',
         'Overall quality',
-        'Other'
     ];
 
     return (

@@ -39,7 +39,10 @@ const router = createBrowserRouter([
         element: <AddPlacePage/>
       },
       {
-          path: `${basePathname}report-issue`,
+        path: `${basePathname}report-issue`,
+      },
+      {
+          path: `${basePathname}report-issue/:place_id`,
           element: <ReportIssuePage/>
       }
     ]
