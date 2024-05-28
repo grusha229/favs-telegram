@@ -1,0 +1,25 @@
+.option {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  flex-direction: column;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+
+  input[type='radio'] {
+    margin-right: 10px;
+  }
+
+  &.option--checked {
+    border-color: #007aff;
+    background-color: #e6f7ff;
+  }
+}
