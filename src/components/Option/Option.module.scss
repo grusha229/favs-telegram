@@ -7,21 +7,29 @@
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
   flex-direction: row;
-  width: 100%; /* Задаем ширину 100% */
-  box-sizing: border-box; /* Учитываем отступы и границы в размере элемента */
+  width: 100%;
+  box-sizing: border-box;
+  color: #fff; /* Белый цвет текста по умолчанию для светлого фона */
+  background-color: #000; /* Темный фон по умолчанию */
 
   &:hover {
-    background-color: #f0f0f0;
+    background-color: #333; /* Немного светлее при наведении */
   }
 
   input[type='radio'] {
-    margin-right: 10px;
+    display: none; /* Скрываем radio buttons */
   }
 
   &.option--checked {
     border-color: #007aff;
     background-color: #e6f7ff;
+    color: #000; /* Черный цвет текста для светлого фона */
+  }
+
+  &.option--active {
+    color: black; /* Черный цвет текста для активной кнопки */
+    background-color: white; /* Белый фон для активной кнопки */
   }
 }
