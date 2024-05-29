@@ -3,6 +3,12 @@ import api from ".";
 import { IPlaceApiResponse } from "../models/Places";
 // import { IPlaceApiResponse } from "../models/Places";
 
+interface IAddPlaceBody {
+    link: string;
+    labels: string[];
+    added_by: string;
+}
+
 export interface IMapParams {
     latitude: number,
     longitude: number,
@@ -43,6 +49,23 @@ export default class MapService {
             },
         }
         return api.get(`/tg/places/${place_id}`,config)
+    }
+
+    /**
+     * Method for adding a new place
+     * @param token security token
+     * @param id telegram id
+     * @param placeBody place data
+     * @returns Promise<AxiosResponse>
+     */
+    static async addPlace(token: string, id: number, placeBody: IAddPlaceBody): Promise<AxiosResponse> {
+        const config: AxiosRequestConfig = {
+            headers: {
+                Authorization: token,
+                'X-Telegram-ID': id,
+            },
+        };
+        return api.post(`/tg/places`, placeBody, config);
     }
 
     // static async getPlacesByCity(city: string, category?: TCategory, filter?: string) :Promise<AxiosResponse<TMapApiResponse[]>> {
