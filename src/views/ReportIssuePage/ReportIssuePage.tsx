@@ -67,7 +67,7 @@ export default function ReportIssuePage() {
                 </button>
             </header>
             <form className={styles['report-form']} onSubmit={handleSubmit}>
-                <p>Help improve Source by reporting feedback on Télescope Café.</p>
+                <div>Help improve Source by reporting feedback on Télescope Café.</div>
                 <div className={styles['options']}>
                     {options.map((option) => (
                         <div className={optionStyles['option']} key={option}>
