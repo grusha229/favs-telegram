@@ -19,15 +19,6 @@ export default function PlacePage() {
     const [ placeData, setPlaceData ] = useState<IPlaceApiResponse>(null)
     const navigate = useNavigate();
 
-    // const region = useMemo(() => {
-    //     return getDelta(coordinates?.latitude, coordinates?.longitude, 5000)
-    // }, [coordinates])
-
-    // useEffect(() => {
-    //     getLocationPromise
-    //         .then((position) => setCoordinates(position?.coords))
-    // },[])
-
     useEffect(() => {
         MapService.getPlaceInfo(USER_TOKEN, USER_ID, PLACE_ID)
         .then((res) => res.data)

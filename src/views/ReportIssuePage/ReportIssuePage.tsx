@@ -19,14 +19,19 @@ export default function ReportIssuePage() {
         setSelectedOption(event.target.value);
     };
 
+    const reportBody = {
+        description: selectedOption,
+        reported_by: USER_ID.toString()
+    }
+
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
-        alert(`You reported: ${selectedOption}`);
-        MapService.reportPlace(USER_TOKEN, USER_ID, PLACE_ID,
-            {description: selectedOption, reported_by: USER_ID.toString()}).then(response => {
-            alert(`Report successful: ${response.data}`);
-        }).catch(error => {
-            alert(`Error reporting place: ${error}`);
+        MapService
+            .reportPlace(USER_TOKEN, USER_ID, PLACE_ID, reportBody)
+            .then(response => {
+                alert(`Report successful: ${response.data}`);})
+            .catch(error => {
+                console.error(`Error reporting place: ${error}`);
         });
     };
 

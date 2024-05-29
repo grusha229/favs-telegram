@@ -9,7 +9,7 @@ interface IAddPlaceBody {
     added_by: string;
 }
 
-interface ReportPlaceBody {
+interface IReportPlaceBody {
     reported_by: string;
     description: string;
 }
@@ -82,7 +82,7 @@ export default class MapService {
      * @returns
      *
      */
-    static async reportPlace(token: string, id: number, place_id: string, reportBody: ReportPlaceBody) :Promise<AxiosResponse> {
+    static async reportPlace(token: string, id: number, place_id: string, reportBody: IReportPlaceBody) :Promise<AxiosResponse> {
         const config: AxiosRequestConfig = {
             headers: {
                 Authorization: token,
