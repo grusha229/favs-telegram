@@ -2,7 +2,7 @@ import React, { useState, FormEvent } from 'react';
 import styles from './ReportIssuePage.module.scss';
 import optionStyles from '../../components/Option/Option.module.scss';
 import Option from '../../components/Option/Option.tsx';
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import {useSelector} from "react-redux";
 import {IStateInterface} from "../../store/store";
 import MapService  from "../../http/MapService.ts";
@@ -14,6 +14,7 @@ export default function ReportIssuePage() {
     const USER_TOKEN = useSelector((state: IStateInterface) => state.authentication.token)
     const USER_ID = useSelector((state: IStateInterface) => state.authentication.telegramID)
     const PLACE_ID = params?.place_id
+    const navigate = useNavigate();
 
     const handleOptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSelectedOption(event.target.value);
@@ -35,6 +36,10 @@ export default function ReportIssuePage() {
         });
     };
 
+    const handleCancel = () => {
+        navigate(-1);
+    }
+
     const options = [
         'Address is wrong',
         'Serving a different roaster',
@@ -47,7 +52,11 @@ export default function ReportIssuePage() {
     return (
         <div className={styles['report-issue-container']}>
             <header>
-                <button className={styles['cancel-button']}>Cancel</button>
+                <button
+                    className={styles['cancel-button']}
+                    onClick={handleCancel}>
+                    Cancel
+                </button>
                 <h1>Report</h1>
                 <button
                     className={styles['submit-button']}
