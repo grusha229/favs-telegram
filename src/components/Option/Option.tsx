@@ -1,5 +1,5 @@
 import React from 'react';
-import './Option.module.scss';
+import styles from './Option.module.scss';
 
 interface OptionProps {
     label: string;
@@ -10,7 +10,7 @@ interface OptionProps {
 
 const Option: React.FC<OptionProps> = ({ label, value, checked, onChange }) => {
     return (
-        <label className={`option ${checked ? 'option--checked' : ''}`}>
+        <label className={[styles['option'], checked && styles['option--checked']].join(' ')} >
             <input
                 type="radio"
                 value={value}

@@ -8,7 +8,9 @@
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s;
-  flex-direction: column;
+  flex-direction: row;
+  width: 100%; /* Задаем ширину 100% */
+  box-sizing: border-box; /* Учитываем отступы и границы в размере элемента */
 
   &:hover {
     background-color: #f0f0f0;

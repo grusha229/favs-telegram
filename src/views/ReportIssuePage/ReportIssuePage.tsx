@@ -1,6 +1,5 @@
 import React, { useState, FormEvent } from 'react';
 import styles from './ReportIssuePage.module.scss';
-import optionStyles from '../../components/Option/Option.module.scss';
 import Option from '../../components/Option/Option.tsx';
 import { useNavigate, useParams } from 'react-router-dom'
 import {useSelector} from "react-redux";
@@ -70,7 +69,7 @@ export default function ReportIssuePage() {
                 <div>Help improve Source by reporting feedback on Télescope Café.</div>
                 <div className={styles['options']}>
                     {options.map((option) => (
-                        <div className={optionStyles['option']} key={option}>
+                        <div key={option}>
                             <Option
                                 label={option}
                                 value={option}
