@@ -9,6 +9,7 @@ import WelcomePage from './views/WelcomePage/WelcomePage';
 import CityPage from './views/CityPage/CityPage';
 import { store } from './store/store';
 import PlacePage from './views/PlacePage/PlacePage';
+import AddPlacePage from "./views/AddPlacePage/AddPlacePage.tsx";
 
 // this manifest is used temporarily for development purposes
 const manifestUrl = 'https://grusha229.github.io/favs-telegram/tonconnect-manifest.json';
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
         path: `${basePathname}place/:place_id`,
         element: <PlacePage/>
       },
+      {
+        path: `${basePathname}add-place`,
+        element: <AddPlacePage/>
+      }
     ]
   },
 ]);
