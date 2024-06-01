@@ -2,10 +2,9 @@
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
-  padding: 20px;
   font-family: Arial, sans-serif;
-  background-color: #000;
-  color: #fff;
+  background-color: var( --tg-theme-card-background-color);
+  color: var(--tg-theme-card-text-color);
 }
 
 header {
@@ -14,16 +13,20 @@ header {
   align-items: center;
   margin-bottom: 20px;
 
-  .cancel-button,
-  .submit-button {
-    background: none;
-    border: none;
-    color: #007aff;
+  button {
+
+  }
+  .cancel-button {
     font-size: 16px;
     cursor: pointer;
+    border: none;
+  }
+  .submit-button {
+    background: var(--tg-theme-button-color);
+    color: var(--tg-theme-button-color);
 
     &:disabled {
-      color: #ccc;
+      color: var(--tg-theme-button-color);
       cursor: not-allowed;
     }
   }

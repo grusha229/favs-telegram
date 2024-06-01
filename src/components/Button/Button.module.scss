@@ -1,0 +1,32 @@
+.button-container {
+    font-size: 16px;
+
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+
+    cursor: pointer;
+
+    color: var(--tg-theme-button-text-color);
+}
+
+.button-primary {
+    background-color: var(--tg-theme-button-primary-color);
+}
+
+.button-plain {
+    background-color: var(--tg-theme-button-plain-color);
+}
+
+.button-secondary {
+    background-color: var(--tg-theme-button-secondary-color);
+}
+
+.disabled {
+    opacity: 0.7;
+    cursor: unset
+}
+
+.block {
+    width: 100%;
+}

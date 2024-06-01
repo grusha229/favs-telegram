@@ -10,3 +10,10 @@
         flex: 0 0 230px;
     }
 }
+
+.container {
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}

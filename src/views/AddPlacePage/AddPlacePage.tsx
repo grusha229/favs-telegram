@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { IStateInterface } from '../../store/store';
 import MapService from '../../http/MapService';
 import CategoryOption from '../../components/CategoryOption/CategoryOption';
+import Button from '../../components/Button/Button';
 
 export default function AddPlacePage() {
     const [link, setMapLink] = useState<string>('');
@@ -55,17 +56,19 @@ export default function AddPlacePage() {
     return (
         <div className={styles['add-place-container']}>
             <header>
-                <button className={styles['cancel-button']} onClick={handleCancel}>
+                <Button 
+                    type="secondary"
+                    onClick={handleCancel}
+                >
                     Cancel
-                </button>
+                </Button>
                 <h2>Add new laptop friendly place</h2>
-                <button
-                    className={styles['submit-button']}
+                <Button
                     onClick={handleSubmit}
                     disabled={!link || labels.length === 0}
                 >
                     Send
-                </button>
+                </Button>
             </header>
             <form className={styles['add-place-form']} onSubmit={handleSubmit}>
                 <label htmlFor="map-link">Paste here Google Maps link</label>

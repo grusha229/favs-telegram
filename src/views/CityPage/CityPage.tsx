@@ -8,6 +8,7 @@ import PlaceItem from '../../components/PlaceItem/PlaceItem'
 import Slider from '../../components/Slider/Slider'
 import { useNavigate } from 'react-router-dom'
 import AddNewPlaceButton from "../../components/AddNewPlaceButton/AddNewPlaceButton.tsx";
+import styles from './CityPage.module.scss'
 
 export default function CityPage() {
     // console.log('user ',window.navigator?.userAgentData?.platform);
@@ -47,19 +48,9 @@ export default function CityPage() {
     },[USER_TOKEN, USER_ID, region])
 
   return (
-      <div>
-          <div className='Container'>
+      <div className={styles['container']}>
+          <div>
               <h1>Laptop friendly places</h1>
-              {coordinates &&
-                  <>
-                      <div className='Card'>
-                          {coordinates?.latitude}
-                      </div>
-                      <div className='Card'>
-                          {coordinates?.longitude}
-                      </div>
-                  </>
-              }
           </div>
           <Slider>
               {places?.map((place) => (

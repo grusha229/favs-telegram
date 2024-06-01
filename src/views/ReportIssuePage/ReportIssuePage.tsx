@@ -1,10 +1,11 @@
-import React, { useState, FormEvent } from 'react';
+import React, { useState, useCallback } from 'react';
 import styles from './ReportIssuePage.module.scss';
 import Option from '../../components/Option/Option.tsx';
 import { useNavigate, useParams } from 'react-router-dom'
 import {useSelector} from "react-redux";
 import {IStateInterface} from "../../store/store";
 import MapService  from "../../http/MapService.ts";
+import Button from '../../components/Button/Button.tsx';
 
 export default function ReportIssuePage() {
     const [selectedOption, setSelectedOption] = useState<string>('');
@@ -12,6 +13,7 @@ export default function ReportIssuePage() {
     const params = useParams();
     const USER_TOKEN = useSelector((state: IStateInterface) => state.authentication.token)
     const USER_ID = useSelector((state: IStateInterface) => state.authentication.telegramID)
+    const PLACE_NAME = useSelector((state: IStateInterface) => state.placesList.current?.name)
     const PLACE_ID = params?.place_id
     const navigate = useNavigate();
 
@@ -24,7 +26,7 @@ export default function ReportIssuePage() {
         reported_by: USER_ID.toString()
     }
 
-    const handleSubmit = (event: FormEvent) => {
+    const handleSubmit = useCallback((event) => {
         event.preventDefault();
         MapService
             .reportPlace(USER_TOKEN, USER_ID, PLACE_ID, reportBody)
@@ -33,7 +35,7 @@ export default function ReportIssuePage() {
             .catch(error => {
                 console.error(`Error reporting place: ${error}`);
         });
-    };
+    },[]);
 
     const handleCancel = () => {
         navigate(-1);
@@ -51,22 +53,22 @@ export default function ReportIssuePage() {
     return (
         <div className={styles['report-issue-container']}>
             <header>
-                <button
-                    className={styles['cancel-button']}
+                <Button
+                    type="secondary"
                     onClick={handleCancel}>
                     Cancel
-                </button>
+                </Button>
                 <h1>Report</h1>
-                <button
-                    className={styles['submit-button']}
+                <Button
+                    type="primary"
                     onClick={handleSubmit}
                     disabled={!selectedOption}
                 >
                     Submit
-                </button>
+                </Button>
             </header>
             <form className={styles['report-form']} onSubmit={handleSubmit}>
-                <div>Help improve Source by reporting feedback on Télescope Café.</div>
+                <div>Help improve Source by reporting feedback on {PLACE_NAME}.</div>
                 <div className={styles['options']}>
                     {options.map((option) => (
                         <div key={option}>
@@ -82,4 +84,4 @@ export default function ReportIssuePage() {
             </form>
         </div>
     );
-};
+}

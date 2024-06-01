@@ -11,10 +11,11 @@
   flex-direction: row;
   width: 100%;
   box-sizing: border-box;
-  color: #fff; /* Белый цвет текста по умолчанию для светлого фона */
+  color: var(--tg-theme-card-text-color); 
+  background-color: var(--tg-theme-card-background-color);
 
   &:hover {
-    background-color: #333; /* Немного светлее при наведении */
+    filter: brightness(-1); /* Немного светлее при наведении */
   }
 
   input[type='checkbox'] {
