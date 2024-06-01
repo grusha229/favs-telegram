@@ -9,6 +9,11 @@ interface IAddPlaceBody {
     added_by: string;
 }
 
+interface IReportPlaceBody {
+    reported_by: string;
+    description: string;
+}
+
 export interface IMapParams {
     latitude: number,
     longitude: number,
@@ -66,6 +71,25 @@ export default class MapService {
             },
         };
         return api.post(`/tg/places`, placeBody, config);
+    }
+
+    /*
+     * Method for reporting place
+     * @param token security token
+     * @param id telegram id
+     * @param place_id place id
+     * @param reportBody
+     * @returns
+     *
+     */
+    static async reportPlace(token: string, id: number, place_id: string, reportBody: IReportPlaceBody) :Promise<AxiosResponse> {
+        const config: AxiosRequestConfig = {
+            headers: {
+                Authorization: token,
+                'X-Telegram-ID': id
+            },
+        }
+        return api.post(`/tg/places/${place_id}/reports`, reportBody, config)
     }
 
     // static async getPlacesByCity(city: string, category?: TCategory, filter?: string) :Promise<AxiosResponse<TMapApiResponse[]>> {

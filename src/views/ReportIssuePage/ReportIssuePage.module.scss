@@ -1,0 +1,42 @@
+.report-issue-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #000;
+  color: #fff;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  .cancel-button,
+  .submit-button {
+    background: none;
+    border: none;
+    color: #007aff;
+    font-size: 16px;
+    cursor: pointer;
+
+    &:disabled {
+      color: #ccc;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.report-form {
+  p {
+    font-size: 14px;
+    color: #aaa;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+  }
+}

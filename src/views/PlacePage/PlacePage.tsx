@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import MapService from '../../http/MapService'
 import { useSelector } from 'react-redux'
 import { IStateInterface } from '../../store/store'
 import { IPlaceApiResponse } from '../../models/Places'
 import styles from "./PlacePage.module.scss"
-import { useParams } from 'react-router-dom'
 import errorImage from "../../assets/noImage.jpg";
 import NavButton from '../../components/NavButton/NavButton'
+// import styles from "./CityPage.module.scss"
+import {useNavigate, useParams} from 'react-router-dom'
+import Button from "../../components/Button/Button.tsx";
 
 export default function PlacePage() {
     const params = useParams();
@@ -15,6 +17,7 @@ export default function PlacePage() {
     const USER_ID = useSelector((state: IStateInterface) => state.authentication.telegramID)
     const PLACE_ID = params?.place_id
     const [ placeData, setPlaceData ] = useState<IPlaceApiResponse>(null)
+    const navigate = useNavigate();
 
     useEffect(() => {
         MapService.getPlaceInfo(USER_TOKEN, USER_ID, PLACE_ID)
@@ -30,6 +33,9 @@ export default function PlacePage() {
     },[USER_TOKEN, USER_ID])
 
     const imageSource = placeData?.photosUrl ? placeData?.photosUrl[0] : errorImage;
+    const handleReportClick = () => {
+        navigate(`./report-issue`);
+    };
 
   return (
     <div>
@@ -56,12 +62,14 @@ export default function PlacePage() {
                     </div>
                 }
             </div>
-            {error && 
+            <Button onClick={handleReportClick}>
+                Report Issue
+            </Button>
+            {error &&
                 <div className='Card'>
                         {error}
                 </div>
             }
-            
     </div>
   )
 }
