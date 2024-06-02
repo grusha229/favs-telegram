@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { IStateInterface } from '../../store/store';
 import MapService from '../../http/MapService';
-import CategoryOption from '../../components/CategoryOption/CategoryOption';
+import Option from '../../components/Option/Option';
 import Button from '../../components/Button/Button';
 
 export default function AddPlacePage() {
@@ -71,19 +71,21 @@ export default function AddPlacePage() {
                 </Button>
             </header>
             <form className={styles['add-place-form']} onSubmit={handleSubmit}>
-                <label htmlFor="map-link">Paste here Google Maps link</label>
-                <input
-                    id="map-link"
-                    type="text"
-                    value={link}
-                    onChange={handleMapLinkChange}
-                    placeholder="https://maps.app.goo.gl/..."
-                />
+                <div>
+                    <div className={styles['subtitle']}>Paste here Google Maps link</div>
+                    <input
+                        id="map-link"
+                        type="text"
+                        value={link}
+                        onChange={handleMapLinkChange}
+                        placeholder="https://maps.app.goo.gl/..."
+                    />
+                </div>
                 <div className={styles['labels']}>
-                    <label>Choose the labels</label>
+                    <div className={styles['subtitle']}>Choose the labels</div>
                     <div className={styles['category-options']}>
                         {categoryOptions.map((category) => (
-                            <CategoryOption
+                            <Option
                                 key={category}
                                 label={category}
                                 value={category}

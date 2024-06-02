@@ -68,7 +68,7 @@ export default function ReportIssuePage() {
                 </Button>
             </header>
             <form className={styles['report-form']} onSubmit={handleSubmit}>
-                <div>Help improve Source by reporting feedback on {PLACE_NAME}.</div>
+                <div className={styles['subtitle']}>Help improve Source by reporting feedback on {PLACE_NAME}.</div>
                 <div className={styles['options']}>
                     {options.map((option) => (
                         <div key={option}>

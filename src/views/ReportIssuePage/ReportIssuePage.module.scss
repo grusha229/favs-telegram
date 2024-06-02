@@ -1,10 +1,8 @@
 .report-issue-container {
   width: 100%;
-  max-width: 400px;
   margin: 0 auto;
-  font-family: Arial, sans-serif;
-  background-color: var(--telegram-secondary-bg-color);
   color: var(--telegram-text-color);
+  padding: var(--telegram-horizontal-paddings);
 }
 
 header {
@@ -32,11 +30,16 @@ header {
 .report-form {
   p {
     font-size: 14px;
-    color: #aaa;
+    color: var(--telegram-text-color);
   }
 
   .options {
     display: flex;
     flex-direction: column;
   }
+}
+
+.subtitle {
+  color: var(--telegram-text-color);
+  margin-bottom: 12px;
 }

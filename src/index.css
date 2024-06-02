@@ -14,13 +14,15 @@
   --telegram-text-color: var(--tg-theme-text-color, #131415);
   --telegram-hint-color: var(--tg-theme-hint-color, #707579);
   --telegram-link-color: var(--tg-theme-link-color, #3390ec);
-  
+
   --telegram-button-text-color: var(--tg-theme-button-text-color, #ffffff);
   --telegram-secondary-bg-color: var(--tg-theme-secondary-bg-color, #f4f4f5);
 
   --tg-theme-card-background-color: #FFFFFF;
   --tg-theme-card-text-color: #000000;
   --tg-theme-card-subtext-color: #707579;
+
+  --telegram-horizontal-paddings: 20px;
 }
 /* 
 @media (prefers-color-scheme: dark) {
@@ -84,10 +86,10 @@
 
 h1, h2, p {
   margin: 0;
-  font-family: 'SF UI Text';
+  color: var(--telegram-text-color);
 }
 
 a {
   text-decoration: none;
-  color: var(--tg-theme-text-color);
+  color: var(--telegram-text-color);
 }

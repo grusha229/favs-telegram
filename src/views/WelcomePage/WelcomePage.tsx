@@ -9,6 +9,8 @@ import { getLocationPromise } from '../../utils/location';
 import AuthService from '../../http/AuthService';
 import { useDispatch } from 'react-redux';
 import { setToken, setUser } from '../../store/features/Auth/AuthSlice';
+import styles from './WelcomePage.module.scss';
+import laptopGif from './../../assets/laptop--image.gif';
 
 function WelcomePage() {
   // const { connected } = useTonConnect();
@@ -40,14 +42,15 @@ function WelcomePage() {
   },[])
 
   return (
-    <div className='App'>
-      <div className='Container'>
-        <h1>Laptop friendly places</h1>
-        <p>We need your location to show all places near you</p>
-        <Button onClick={onClick}>
-          Show all places near me
-        </Button>
+    <div className={styles['container']}>
+      <div className={styles['image-container']}>
+        <img src={laptopGif} alt=""/>
       </div>
+      <h1>Laptop friendly places</h1>
+      <div className={styles['subtitle']}>We need your location to show all places near you</div>
+      <Button onClick={onClick}>
+        Show all places near me
+      </Button>
     </div>
   );
 }

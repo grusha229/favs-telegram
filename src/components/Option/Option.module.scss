@@ -11,11 +11,11 @@
   flex-direction: row;
   width: 100%;
   box-sizing: border-box;
-  color: #fff; /* Белый цвет текста по умолчанию для светлого фона */
-  background-color: #000; /* Темный фон по умолчанию */
+  color: var(--tg-theme-card-text-color); 
+  background-color: var(--tg-theme-card-background-color);
 
   &:hover {
-    background-color: #333; /* Немного светлее при наведении */
+    filter: brightness(-1); 
   }
 
   input[type='radio'] {

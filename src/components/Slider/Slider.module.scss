@@ -1,13 +1,14 @@
 .slider {
     display: flex;
+    box-sizing: content-box;
 
     flex-direction: row;
     gap: 16px;
     overflow-x: scroll;
 
-    padding-left: 15px;
-    padding-right: 15px;
-    width: calc(100% - 30px);
+    padding-left: var(--telegram-horizontal-paddings);
+    padding-right: var(--telegram-horizontal-paddings);
+    width: calc(100% - var(--telegram-horizontal-paddings)*2);
 
     &--item {
         flex: 0 0 250px;
