@@ -7,19 +7,19 @@
 
     cursor: pointer;
 
-    color: var(--tg-theme-button-text-color);
+    color: var(--telegram-button-text-color);
 }
 
 .button-primary {
-    background-color: var(--tg-theme-button-primary-color);
+    background-color: var(--tg-theme-button-primary-bg-color);
 }
 
 .button-plain {
-    background-color: var(--tg-theme-button-plain-color);
+    background-color: var(--tg-theme-button-plain-bg-color);
 }
 
 .button-secondary {
-    background-color: var(--tg-theme-button-secondary-color);
+    background-color: var(--tg-theme-button-secondary-bg-color);
 }
 
 .disabled {

@@ -3,8 +3,8 @@
   max-width: 400px;
   margin: 0 auto;
   font-family: Arial, sans-serif;
-  background-color: var( --tg-theme-card-background-color);
-  color: var(--tg-theme-card-text-color);
+  background-color: var(--telegram-secondary-bg-color);
+  color: var(--telegram-text-color);
 }
 
 header {
@@ -13,9 +13,6 @@ header {
   align-items: center;
   margin-bottom: 20px;
 
-  button {
-
-  }
   .cancel-button {
     font-size: 16px;
     cursor: pointer;

@@ -5,23 +5,24 @@
 }
 
 :root {
-  --tg-theme-bg-color: #707579;
-  --tg-theme-text-color: #131415;
+  --tg-theme-button-bg-color: #007AFF;
+  --tg-theme-button-primary-bg-color: #007AFF;
+  --tg-theme-button-plain-bg-color: transparent;
+  --tg-theme-button-secondary-bg-color: #898989;
 
-
-  --tg-theme-button-color: #007AFF;
-  --tg-theme-button-primary-color: #007AFF;
-  --tg-theme-button-plain-color: transparent;
-  --tg-theme-button-secondary-color: #898989;
-
-  --tg-theme-button-text-color: #FFFFFF;
-
+  --telegram-bg-color: var(--tg-theme-bg-color, #ffffff);
+  --telegram-text-color: var(--tg-theme-text-color, #131415);
+  --telegram-hint-color: var(--tg-theme-hint-color, #707579);
+  --telegram-link-color: var(--tg-theme-link-color, #3390ec);
+  
+  --telegram-button-text-color: var(--tg-theme-button-text-color, #ffffff);
+  --telegram-secondary-bg-color: var(--tg-theme-secondary-bg-color, #f4f4f5);
 
   --tg-theme-card-background-color: #FFFFFF;
   --tg-theme-card-text-color: #000000;
   --tg-theme-card-subtext-color: #707579;
 }
-
+/* 
 @media (prefers-color-scheme: dark) {
   :root {
     --tg-theme-bg-color: #131415;
@@ -33,7 +34,7 @@
     --tg-theme-card-text-color: #fff;
     --tg-theme-card-subtext-color: #707579;
   }
-}
+} */
 
 .App {
   background-color: var(--tg-theme-bg-color);
