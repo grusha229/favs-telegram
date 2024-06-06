@@ -11,6 +11,14 @@ import {useNavigate, useParams} from 'react-router-dom'
 import Button from "../../components/Button/Button.tsx";
 import { setCurrentPlace } from '../../store/features/Places/PlacesSlice.ts'
 import { Section, Cell } from '@telegram-apps/telegram-ui'
+import {
+    useBackButton,
+    useBackButtonRaw,
+    useViewport,
+    useViewportRaw,
+    useBiometryManagerRaw,
+  } from '@tma.js/sdk-react';
+  
 
 export default function PlacePage() {
     const params = useParams();
@@ -21,6 +29,12 @@ export default function PlacePage() {
     const [ placeData, setPlaceData ] = useState<IPlaceApiResponse>(null)
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const backButton = useBackButton();
+
+    backButton.show()
+    backButton.on('click', () => {
+        handleBackClick()
+    })
 
     useEffect(() => {
         MapService.getPlaceInfo(USER_TOKEN, USER_ID, PLACE_ID)
@@ -48,14 +62,6 @@ export default function PlacePage() {
 
   return (
     <div>   
-        <div className={styles['nav-container']}>
-            <Button
-                onClick={handleBackClick}
-                type="secondary"
-            >
-                Back
-            </Button>
-        </div>
         <div className={styles['image-container']}>
             <img 
                 className={styles['image']}
