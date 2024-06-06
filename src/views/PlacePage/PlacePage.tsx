@@ -10,6 +10,7 @@ import NavButton from '../../components/NavButton/NavButton'
 import {useNavigate, useParams} from 'react-router-dom'
 import Button from "../../components/Button/Button.tsx";
 import { setCurrentPlace } from '../../store/features/Places/PlacesSlice.ts'
+import { Section, Cell } from '@telegram-apps/telegram-ui'
 
 export default function PlacePage() {
     const params = useParams();
@@ -77,7 +78,13 @@ export default function PlacePage() {
                     }
                 </div>
             }
+            <div className={styles['section']}>
+                <div className={styles['section-heading']}>
+                    About
+                </div>
+            </div>
         </div>
+
         <div className={styles['nav-container']}>
             <Button 
                 onClick={handleReportClick}

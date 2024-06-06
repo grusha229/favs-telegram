@@ -58,3 +58,11 @@
         color: var(--telegram-hint-color);
     }
 }
+
+.section {
+    padding: 0 var(--telegram-horizontal-paddings);
+    &-heading {
+        text-align: left;
+        color: var(--telegram-hint-color);
+    }
+}

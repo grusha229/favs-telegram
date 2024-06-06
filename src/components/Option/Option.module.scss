@@ -12,10 +12,10 @@
   width: 100%;
   box-sizing: border-box;
   color: var(--tg-theme-card-text-color); 
-  background-color: var(--tg-theme-card-background-color);
+  background-color: var(--telegram-secondary-bg-color);
 
   &:hover {
-    filter: brightness(-1); 
+    filter: brightness(1.2); 
   }
 
   input[type='radio'] {
@@ -24,12 +24,6 @@
 
   &.option--checked {
     border-color: #007aff;
-    background-color: #e6f7ff;
-    color: #000; /* Черный цвет текста для светлого фона */
-  }
-
-  &.option--active {
-    color: black; /* Черный цвет текста для активной кнопки */
-    background-color: white; /* Белый фон для активной кнопки */
+    filter: brightness(.9);
   }
 }
