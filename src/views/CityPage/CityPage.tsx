@@ -57,43 +57,45 @@ export default function CityPage() {
     return (
         <div className={styles['container']}>
             <h1>Laptop friendly places</h1>
-            {isLoading && 
-                <Slider>
-                    <PlaceItemSkeleton/>
-                </Slider>
-            }
-            {!isLoading && !error && 
-                <div>
-                    <div
-                        className={styles['slider-header']}
+            <div>
+                <div
+                    className={styles['slider-header']}
+                >
+                    <div className={styles['heading']}>near you</div>
+                    <Button
+                        type="plain"
+                        onClick={() => console.log('')}
+                        disabled={error}
                     >
-                        <div className={styles['heading']}>near you</div>
-                        <Button
-                            type="plain"
-                            onClick={() => console.log('')}
-                        >
-                            See all
-                        </Button>
-                    </div>
-                    <Slider>
-                        {places?.map((place) => (
-                            <PlaceItem
-                                imgSrc={place.imagePreview}
-                                key={place.id}
-                                name={place.name}
-                                id={place.id}
-                                type={place.category}
-                                address={place.address}
-                            />
-                        ))}
-                    </Slider>
+                        See all
+                    </Button>
                 </div>
-            }
-            {!isLoading && error &&
-                    <div className={styles['error-container']}>
-                        <ErrorBlock error="There is something wrong :("/>
-                    </div>
-            }
+                {isLoading && 
+                    <Slider>
+                        <PlaceItemSkeleton/>
+                    </Slider>
+                }
+                {!isLoading && !error && 
+                        
+                        <Slider>
+                            {places?.map((place) => (
+                                <PlaceItem
+                                    imgSrc={place.imagePreview}
+                                    key={place.id}
+                                    name={place.name}
+                                    id={place.id}
+                                    type={place.category}
+                                    address={place.address}
+                                />
+                            ))}
+                        </Slider>
+                }
+                {!isLoading && error &&
+                        <div className={styles['error-container']}>
+                            <ErrorBlock error="There is something wrong :("/>
+                        </div>
+                }
+            </div>
             <div className={styles['bottom-button']}>
                 <AddNewPlaceButton onClick={handleAddNewPlace}/>
             </div>
