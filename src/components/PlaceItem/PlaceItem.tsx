@@ -2,6 +2,7 @@ import React from 'react'
 import errorImage from "../../assets/noImage.jpg";
 import { Link } from 'react-router-dom';
 import styles from './PlaceItem.module.scss'
+import { Caption, Subheadline } from '@telegram-apps/telegram-ui';
 
 export interface IProps {
     name: string,
@@ -28,11 +29,11 @@ export default function PlaceItem(props: IProps) {
                 />
             </div>
             <div className={styles['text-container']}>
-                <div className={styles['name']}>{name}</div>
+                <Subheadline className={styles['name']}>{name}</Subheadline>
                 {type &&
-                    <div className={styles['type']}>{type}</div>
+                    <Caption className={styles['type']}>{type}</Caption>
                 }
-                <div className={styles['address']}>{address}</div>
+                <Caption className={styles['address']}>{address}</Caption>
             </div>
         </div>
     </Link>
