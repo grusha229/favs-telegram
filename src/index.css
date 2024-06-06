@@ -2,6 +2,7 @@
 
 * {
   box-sizing: border-box;
+  font-family: var(--tgui--font-family);
 }
 
 :root {
@@ -84,7 +85,7 @@
   background-color: var(--tg-theme-card-background-color);
 }
 
-h1, h2, p {
+h1, h2, h3, h4, h5, p {
   margin: 0;
   color: var(--telegram-text-color);
 }

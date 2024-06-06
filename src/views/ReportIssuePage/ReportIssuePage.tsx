@@ -58,7 +58,7 @@ export default function ReportIssuePage() {
                     onClick={handleCancel}>
                     Cancel
                 </Button>
-                <h1>Report</h1>
+                <h3>Report</h3>
                 <Button
                     type="primary"
                     onClick={handleSubmit}
@@ -67,8 +67,8 @@ export default function ReportIssuePage() {
                     Submit
                 </Button>
             </header>
+            <h2>Help improve Source by reporting feedback on {PLACE_NAME}.</h2>
             <form className={styles['report-form']} onSubmit={handleSubmit}>
-                <div className={styles['subtitle']}>Help improve Source by reporting feedback on {PLACE_NAME}.</div>
                 <div className={styles['options']}>
                     {options.map((option) => (
                         <div key={option}>

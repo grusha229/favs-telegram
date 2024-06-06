@@ -47,8 +47,8 @@ function WelcomePage() {
       <div className={styles['image-container']}>
         <img src={laptopGif} alt=""/>
       </div>
-      <Title level="1" weight="2">Laptop friendly places</Title>
-      <Text className={styles['subtitle']}>We need your location to show all places near you</Text>
+      <div>Laptop friendly places</div>
+      <div className={styles['subtitle']}>We need your location to show all places near you</div>
       <Button onClick={onClick}>
         Show all places near me
       </Button>

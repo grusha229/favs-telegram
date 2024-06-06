@@ -9,6 +9,8 @@
     padding-left: var(--telegram-horizontal-paddings);
     padding-right: var(--telegram-horizontal-paddings);
     width: calc(100% - var(--telegram-horizontal-paddings)*2);
+    
+    min-height: 309px;
 
     &--item {
         flex: 0 0 250px;

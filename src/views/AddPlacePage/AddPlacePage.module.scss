@@ -70,4 +70,15 @@ header {
 .subtitle {
     color: var(--telegram-text-color);
     margin-bottom: 12px;
+
+    opacity: .5;
+
+    text-align: left;
+}
+
+h2 {
+    margin-top: 8px;
+    margin-bottom: 24px;
+
+    text-align: left;
 }

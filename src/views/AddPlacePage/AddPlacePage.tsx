@@ -62,7 +62,6 @@ export default function AddPlacePage() {
                 >
                     Cancel
                 </Button>
-                <h2>Add new laptop friendly place</h2>
                 <Button
                     onClick={handleSubmit}
                     disabled={!link || labels.length === 0}
@@ -70,6 +69,7 @@ export default function AddPlacePage() {
                     Send
                 </Button>
             </header>
+            <h2>Add new laptop friendly place</h2>
             <form className={styles['add-place-form']} onSubmit={handleSubmit}>
                 <div>
                     <div className={styles['subtitle']}>Paste here Google Maps link</div>

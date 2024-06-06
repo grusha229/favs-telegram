@@ -2,7 +2,7 @@ import React from 'react'
 import errorImage from "../../assets/noImage.jpg";
 import { Link } from 'react-router-dom';
 import styles from './PlaceItem.module.scss'
-import { Caption, Subheadline } from '@telegram-apps/telegram-ui';
+import { Spinner } from '@telegram-apps/telegram-ui';
 
 export interface IProps {
     name: string,
@@ -29,13 +29,26 @@ export default function PlaceItem(props: IProps) {
                 />
             </div>
             <div className={styles['text-container']}>
-                <Subheadline className={styles['name']}>{name}</Subheadline>
+                <div className={styles['name']}>{name}</div>
                 {type &&
-                    <Caption className={styles['type']}>{type}</Caption>
+                    <div className={styles['type']}>{type}</div>
                 }
-                <Caption className={styles['address']}>{address}</Caption>
+                <div className={styles['address']}>{address}</div>
             </div>
         </div>
     </Link>
   )
 }
+
+export function PlaceItemSkeleton () {
+    return(
+        <div className={styles['card--skeleton']}>
+            <div className={styles['card-container']}>
+                <div className={styles['image-container--skeleton']}>
+                    <Spinner size='m'/>
+                </div>
+                <div className={styles['text-container--skeleton']}/>
+            </div>
+        </div>
+    )
+};
