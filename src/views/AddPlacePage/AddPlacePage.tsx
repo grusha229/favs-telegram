@@ -6,11 +6,24 @@ import { IStateInterface } from '../../store/store';
 import MapService from '../../http/MapService';
 import Option from '../../components/Option/Option';
 import Button from '../../components/Button/Button';
+import {
+    useBackButton,
+  } from '@tma.js/sdk-react';
 
 export default function AddPlacePage() {
     const [link, setMapLink] = useState<string>('');
     const [labels, setLabels] = useState<string[]>([]);
     const navigate = useNavigate();
+
+    const handleBackClick = () => {
+        navigate(-1);
+    };
+
+    const backButton = useBackButton();
+    backButton.show()
+    backButton.on('click', () => {
+        handleBackClick()
+    })
 
     const USER_TOKEN = useSelector((state: IStateInterface) => state.authentication.token);
     const USER_ID = useSelector((state: IStateInterface) => state.authentication.telegramID);
@@ -47,28 +60,10 @@ export default function AddPlacePage() {
             });
     };
 
-    const handleCancel = () => {
-        navigate(-1);
-    };
-
     const categoryOptions = ['cafe', 'coworking', 'library', 'other'];
 
     return (
         <div className={styles['add-place-container']}>
-            <header>
-                <Button 
-                    type="secondary"
-                    onClick={handleCancel}
-                >
-                    Cancel
-                </Button>
-                <Button
-                    onClick={handleSubmit}
-                    disabled={!link || labels.length === 0}
-                >
-                    Send
-                </Button>
-            </header>
             <h2>Add new laptop friendly place</h2>
             <form className={styles['add-place-form']} onSubmit={handleSubmit}>
                 <div>
@@ -96,6 +91,13 @@ export default function AddPlacePage() {
                     </div>
                 </div>
             </form>
+            <Button
+                onClick={handleSubmit}
+                disabled={!link || labels.length === 0}
+                block
+            >
+                Send
+            </Button>
         </div>
     );
 }

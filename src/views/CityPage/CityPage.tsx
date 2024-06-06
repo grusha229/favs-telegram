@@ -75,8 +75,7 @@ export default function CityPage() {
                         <PlaceItemSkeleton/>
                     </Slider>
                 }
-                {!isLoading && !error && 
-                        
+                {!isLoading && !error &&
                         <Slider>
                             {places?.map((place) => (
                                 <PlaceItem

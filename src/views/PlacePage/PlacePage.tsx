@@ -10,13 +10,8 @@ import NavButton from '../../components/NavButton/NavButton'
 import {useNavigate, useParams} from 'react-router-dom'
 import Button from "../../components/Button/Button.tsx";
 import { setCurrentPlace } from '../../store/features/Places/PlacesSlice.ts'
-import { Section, Cell } from '@telegram-apps/telegram-ui'
 import {
     useBackButton,
-    useBackButtonRaw,
-    useViewport,
-    useViewportRaw,
-    useBiometryManagerRaw,
   } from '@tma.js/sdk-react';
   
 
@@ -29,7 +24,13 @@ export default function PlacePage() {
     const [ placeData, setPlaceData ] = useState<IPlaceApiResponse>(null)
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
     const backButton = useBackButton();
+
+
+    const handleBackClick = () => {
+        navigate(-1);
+    };
 
     backButton.show()
     backButton.on('click', () => {
@@ -56,9 +57,6 @@ export default function PlacePage() {
         navigate(`./report-issue`);
     };
 
-    const handleBackClick = () => {
-        navigate(-1);
-    };
 
   return (
     <div>   
@@ -91,14 +89,12 @@ export default function PlacePage() {
             </div>
         </div>
 
-        <div className={styles['nav-container']}>
-            <Button 
-                onClick={handleReportClick}
-                block
-            >
-                Report Issue
-            </Button>
-        </div>
+        <Button 
+            onClick={handleReportClick}
+            block
+        >
+            Report Issue
+        </Button>
         {error &&
             <div className='Card'>
                     {error}

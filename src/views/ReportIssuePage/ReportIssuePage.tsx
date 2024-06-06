@@ -6,6 +6,9 @@ import {useSelector} from "react-redux";
 import {IStateInterface} from "../../store/store";
 import MapService  from "../../http/MapService.ts";
 import Button from '../../components/Button/Button.tsx';
+import {
+    useBackButton,
+  } from '@tma.js/sdk-react';
 
 export default function ReportIssuePage() {
     const [selectedOption, setSelectedOption] = useState<string>('');
@@ -37,9 +40,15 @@ export default function ReportIssuePage() {
         });
     },[]);
 
-    const handleCancel = () => {
+    const handleBackClick = () => {
         navigate(-1);
     }
+
+    const backButton = useBackButton();
+    backButton.show()
+    backButton.on('click', () => {
+        handleBackClick()
+    })
 
     const options = [
         'Address is wrong',
@@ -52,21 +61,6 @@ export default function ReportIssuePage() {
 
     return (
         <div className={styles['report-issue-container']}>
-            <header>
-                <Button
-                    type="secondary"
-                    onClick={handleCancel}>
-                    Cancel
-                </Button>
-                <h3>Report</h3>
-                <Button
-                    type="primary"
-                    onClick={handleSubmit}
-                    disabled={!selectedOption}
-                >
-                    Submit
-                </Button>
-            </header>
             <h2>Help improve Source by reporting feedback on {PLACE_NAME}.</h2>
             <form className={styles['report-form']} onSubmit={handleSubmit}>
                 <div className={styles['options']}>
@@ -82,6 +76,14 @@ export default function ReportIssuePage() {
                     ))}
                 </div>
             </form>
+            <Button
+                type="primary"
+                onClick={handleSubmit}
+                disabled={!selectedOption}
+                block
+            >
+                Submit
+            </Button>
         </div>
     );
 }
