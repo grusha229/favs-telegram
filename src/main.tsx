@@ -11,6 +11,7 @@ import { store } from './store/store';
 import PlacePage from './views/PlacePage/PlacePage';
 import AddPlacePage from "./views/AddPlacePage/AddPlacePage.tsx";
 import ReportIssuePage from './views/ReportIssuePage/ReportIssuePage';
+import { AppRoot } from '@telegram-apps/telegram-ui';
 
 // this manifest is used temporarily for development purposes
 const manifestUrl = 'https://grusha229.github.io/favs-telegram/tonconnect-manifest.json';
@@ -53,11 +54,13 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <TonConnectUIProvider manifestUrl={manifestUrl}>
-      <Provider store={store}>
-        <React.StrictMode>
-          <RouterProvider router={router} />
-        </React.StrictMode>
-      </Provider>
-  </TonConnectUIProvider>,
+  <AppRoot>
+    <TonConnectUIProvider manifestUrl={manifestUrl}>
+        <Provider store={store}>
+          <React.StrictMode>
+            <RouterProvider router={router} />
+          </React.StrictMode>
+        </Provider>
+    </TonConnectUIProvider>,
+  </AppRoot>
 )

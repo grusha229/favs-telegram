@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import { setToken, setUser } from '../../store/features/Auth/AuthSlice';
 import styles from './WelcomePage.module.scss';
 import laptopGif from './../../assets/laptop--image.gif';
+import { Text, Title } from '@telegram-apps/telegram-ui';
 
 function WelcomePage() {
   // const { connected } = useTonConnect();
@@ -46,8 +47,8 @@ function WelcomePage() {
       <div className={styles['image-container']}>
         <img src={laptopGif} alt=""/>
       </div>
-      <h1>Laptop friendly places</h1>
-      <div className={styles['subtitle']}>We need your location to show all places near you</div>
+      <Title>Laptop friendly places</Title>
+      <Text className={styles['subtitle']}>We need your location to show all places near you</Text>
       <Button onClick={onClick}>
         Show all places near me
       </Button>
