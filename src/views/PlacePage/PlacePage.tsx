@@ -91,7 +91,6 @@ export default function PlacePage() {
 
         <Button 
             onClick={handleReportClick}
-            block
         >
             Report Issue
         </Button>
