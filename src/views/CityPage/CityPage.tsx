@@ -11,6 +11,7 @@ import AddNewPlaceButton from "../../components/AddNewPlaceButton/AddNewPlaceBut
 import styles from './CityPage.module.scss'
 import ErrorBlock from '../../components/ErrorBlock/ErrorBlock.tsx'
 import Button from '../../components/Button/Button.tsx'
+import { useBackButton } from '@tma.js/sdk-react'
 
 export default function CityPage() {
     // console.log('user ',window.navigator?.userAgentData?.platform);
@@ -20,6 +21,10 @@ export default function CityPage() {
     const [isLoading, setIsLoading] = useState(false);
     const USER_TOKEN = useSelector((state: IStateInterface) => state.authentication.token)
     const USER_ID = useSelector((state: IStateInterface) => state.authentication.telegramID)
+
+    const backButton = useBackButton();
+
+    backButton.hide();
 
     const navigate = useNavigate();
     const handleAddNewPlace = () => {
