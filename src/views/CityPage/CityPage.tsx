@@ -24,7 +24,7 @@ export default function CityPage() {
     const [isLoading, setIsLoading] = useState(false);
 
     const [radiusTime, setRadiusTime] = useState(20);
-    const [radiusValue, setRadiusValue] = useState(400);
+    const [radiusValue, setRadiusValue] = useState(20*80);
 
     const USER_TOKEN = useSelector((state: IStateInterface) => state.authentication.token)
     const USER_ID = useSelector((state: IStateInterface) => state.authentication.telegramID)
@@ -35,7 +35,6 @@ export default function CityPage() {
 
     const navigate = useNavigate();
     const handleAddNewPlace = () => {
-        console.log('Add new place button clicked');
         navigate('../add-place')
     };
 

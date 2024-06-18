@@ -37,8 +37,15 @@ export default function PlacePage() {
         handleBackClick()
     })
 
+    const token = localStorage.getItem("token");
+    const user_id = localStorage.getItem("tg_id");
+
+
     useEffect(() => {
-        MapService.getPlaceInfo(USER_TOKEN, USER_ID, PLACE_ID)
+        const AUTH_TOKEN = USER_TOKEN ?? token;
+        const TG_USER_ID = USER_ID ?? parseInt(user_id);
+
+        MapService.getPlaceInfo(AUTH_TOKEN, TG_USER_ID, PLACE_ID)
         .then((res) => res.data)
         .then((place) => {
             console.log(place)
@@ -93,7 +100,7 @@ export default function PlacePage() {
                                 Description
                             </div>
                             <div className={styles['section-item--content']}>
-                                Prague is the capital and largest city of the Czech Republic, and the historical capital of Bohemia.
+                                {placeData?.description}
                             </div>
                         </div>
                     }
@@ -120,7 +127,7 @@ export default function PlacePage() {
                     {placeData?.openingInfo &&
                         <div className={styles['section-item']}>
                             <div className={styles['section-item--title']}>
-                                Now is OPEN
+                                Now is {placeData?.isOpen ? <span className={styles['open']}>open</span> : <span className={styles['closed']}>closed</span>}
                             </div>
                             <div className={styles['section-item--content']}>
                                 {placeData.openingInfo.map((day) => (

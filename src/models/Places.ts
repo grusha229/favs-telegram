@@ -25,6 +25,7 @@ export interface IPlaceApiResponse {
     name: string,
     imagePreview?: string,
     website: string,
+    isOpen?: boolean,
     photosUrl?: string[], // для отображения фотографий после их загрузки из firebase (не api)
 }
 
