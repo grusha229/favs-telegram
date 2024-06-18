@@ -31,16 +31,16 @@ export const degToRadians = (deg: number): number => {
    return deg * ( Math.PI / 180 );
 }
 
-export const getDelta = (lat, lon, distance) => {
-  const oneDegreeOfLatitudeInMeters = 111.32 * 1000;
+export function calculateDeltas(latitude: number, longitude: number, radiusInMeters: number, ) {
+  const radiusInKm = radiusInMeters / 1000;
 
-  const latitudeDelta = distance / oneDegreeOfLatitudeInMeters;
-  const longitudeDelta = distance / (oneDegreeOfLatitudeInMeters * Math.cos(lat * (Math.PI / 180)));
+  const latitudeDelta = radiusInKm / 111.32;
+  const longitudeDelta = radiusInKm / (111.32 * Math.cos(latitude * Math.PI / 180));
 
   return {
-      latitude: lat,
-      longitude: lon,
-      latitudeDelta,
-      longitudeDelta,
-  }
+    latitude,
+    longitude,
+    latitudeDelta,
+    longitudeDelta
+  };
 }

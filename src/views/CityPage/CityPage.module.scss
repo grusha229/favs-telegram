@@ -36,3 +36,27 @@ h1 {
 .bottom-button {
     margin-top: auto;
 }
+
+
+.range {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    &-icon {
+        width: 30px;
+        height: 30px;
+
+        object-fit: contain;
+        opacity: .7;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &-value {
+        color: var(--telegram-hint-color);
+    }
+}

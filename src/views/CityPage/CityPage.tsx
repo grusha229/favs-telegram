@@ -1,16 +1,19 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import { getDelta, getLocationPromise } from '../../utils/location'
+import React, { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react'
+import { calculateDeltas, getLocationPromise } from '../../utils/location'
 import MapService from '../../http/MapService'
 import { useSelector } from 'react-redux'
 import { IStateInterface } from '../../store/store'
 import { IPlaceApiResponse } from '../../models/Places'
 import PlaceItem, { PlaceItemSkeleton } from '../../components/PlaceItem/PlaceItem'
-import Slider from '../../components/Slider/Slider'
 import { useNavigate } from 'react-router-dom'
 import AddNewPlaceButton from "../../components/AddNewPlaceButton/AddNewPlaceButton.tsx";
 import styles from './CityPage.module.scss'
 import ErrorBlock from '../../components/ErrorBlock/ErrorBlock.tsx'
 import Button from '../../components/Button/Button.tsx'
+import { Slider } from '@telegram-apps/telegram-ui';
+import { Slider as CardSlider} from '../../components/Slider/Slider.tsx';
+import walkIcon from "../../assets/walk-icon.svg"
+import { debounce } from 'lodash';
 import { useBackButton } from '@tma.js/sdk-react'
 
 export default function CityPage() {
@@ -19,6 +22,10 @@ export default function CityPage() {
     const [error, setError] = useState(null)
     const [places, setPlaces] = useState<IPlaceApiResponse[]>([])
     const [isLoading, setIsLoading] = useState(false);
+
+    const [radiusTime, setRadiusTime] = useState(20);
+    const [radiusValue, setRadiusValue] = useState(400);
+
     const USER_TOKEN = useSelector((state: IStateInterface) => state.authentication.token)
     const USER_ID = useSelector((state: IStateInterface) => state.authentication.telegramID)
 
@@ -33,18 +40,18 @@ export default function CityPage() {
     };
 
     const region = useMemo(() => {
-        return getDelta(coordinates?.latitude, coordinates?.longitude, 5000)
-    }, [coordinates])
+        return calculateDeltas(coordinates?.latitude, coordinates?.longitude, radiusValue)
+    }, [coordinates, radiusValue])
 
     useEffect(() => {
         getLocationPromise
             .then((position) => setCoordinates(position?.coords))
-    },[])
+    },[region])
 
     const token = localStorage.getItem("token");
     const user_id = localStorage.getItem("tg_id");
 
-    useEffect(() => {
+    function getPlaces() {
         setIsLoading(true);
         const AUTH_TOKEN = USER_TOKEN ?? token;
         const TG_USER_ID = USER_ID ?? parseInt(user_id);
@@ -62,31 +69,57 @@ export default function CityPage() {
             .finally(() => {
                 setIsLoading(false);
             })
+    }
+
+    const handleSliderChange = useCallback(debounce((value: number) => {
+        setRadiusTime(value);
+        setRadiusValue(value * 80);
+        getPlaces()
+    }, 500),[])
+
+    useEffect(() => {
+        getPlaces()
     },[USER_TOKEN, USER_ID, region])
 
     return (
         <div className={styles['container']}>
             <h1>Laptop friendly places</h1>
+                <Slider
+                    min={0}
+                    max={60}
+                    defaultValue={20}
+                    step={5}
+                    onChange={handleSliderChange}
+                    before={
+                        <div className={styles['range']}>
+                            <div className={styles['range-icon']}>
+                                <img src={walkIcon}/>
+                            </div>
+                            <div className={styles['range-value']}>
+                                {radiusTime} min 
+                            </div>
+                        </div>}
+                    />
             <div>
                 <div
                     className={styles['slider-header']}
                 >
                     <div className={styles['heading']}>near you</div>
-                    <Button
+                    {/* <Button
                         type="plain"
                         onClick={() => console.log('')}
                         disabled={error}
                     >
                         See all
-                    </Button>
+                    </Button> */}
                 </div>
                 {isLoading && 
-                    <Slider>
+                    <CardSlider>
                         <PlaceItemSkeleton/>
-                    </Slider>
+                    </CardSlider>
                 }
                 {!isLoading && !error &&
-                        <Slider>
+                        <CardSlider>
                             {places?.map((place) => (
                                 <PlaceItem
                                     imgSrc={place.imagePreview}
@@ -97,7 +130,7 @@ export default function CityPage() {
                                     address={place.address}
                                 />
                             ))}
-                        </Slider>
+                        </CardSlider>
                 }
                 {!isLoading && error &&
                         <div className={styles['error-container']}>

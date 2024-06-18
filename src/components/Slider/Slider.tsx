@@ -5,7 +5,7 @@ export interface IProps {
     children: React.ReactNode[] | React.ReactNode
 }
 
-export default function Slider(props: IProps) {
+export function Slider(props: IProps) {
   return (
     <div className={styles['slider']}>
       {Array.isArray(props.children) && props.children.map((element) => {
