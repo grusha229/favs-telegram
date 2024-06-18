@@ -87,7 +87,6 @@ export default function CityPage() {
                     min={0}
                     max={60}
                     defaultValue={20}
-                    step={5}
                     onChange={handleSliderChange}
                     before={
                         <div className={styles['range']}>
