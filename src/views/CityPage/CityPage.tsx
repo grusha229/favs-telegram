@@ -42,13 +42,14 @@ export default function CityPage() {
     },[])
 
     const token = localStorage.getItem("token");
-    console.log(token);
+    const user_id = localStorage.getItem("tg_id");
 
     useEffect(() => {
         setIsLoading(true);
         const AUTH_TOKEN = USER_TOKEN ?? token;
+        const TG_USER_ID = USER_ID ?? parseInt(user_id);
         region.latitudeDelta && region.longitudeDelta &&
-            MapService.getPlacesWithTelegram(AUTH_TOKEN, USER_ID, region)
+            MapService.getPlacesWithTelegram(AUTH_TOKEN, TG_USER_ID, region)
             .then((res) => res.data)
             .then((places) => {
                 setPlaces(places)

@@ -26,6 +26,8 @@ function WelcomePage() {
       .then((resp) => {
         dispatch(setToken(resp.data))
         dispatch(setUser(ID))
+        localStorage.setItem("token", resp.data);
+        localStorage.setItem("tg_id", ID.toString());
       })
   }, [ID])
 
