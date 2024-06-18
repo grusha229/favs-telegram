@@ -32,7 +32,8 @@ export default class MapService {
 
         const config: AxiosRequestConfig = {
             headers: {
-                Authorization: token,
+                Authorization: `Bearer ${token}`,
+                // Authorization: token,
                 'X-Telegram-ID': id
             },
             params: params

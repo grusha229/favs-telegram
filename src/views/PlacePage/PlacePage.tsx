@@ -86,10 +86,55 @@ export default function PlacePage() {
                 <div className={styles['section-heading']}>
                     About
                 </div>
+                <div className={styles['section-list']}>
+                    {placeData?.description &&
+                        <div className={styles['section-item']}>
+                            <div className={styles['section-item--title']}>
+                                Description
+                            </div>
+                            <div className={styles['section-item--content']}>
+                                Prague is the capital and largest city of the Czech Republic, and the historical capital of Bohemia.
+                            </div>
+                        </div>
+                    }
+                    {placeData?.address &&
+                        <div className={styles['section-item']}>
+                            <div className={styles['section-item--title']}>
+                                Address
+                            </div>
+                            <div className={styles['section-item--content']}>
+                                {placeData?.address}
+                            </div>
+                        </div>
+                    }
+                    {placeData?.instagram &&
+                        <div className={styles['section-item']}>
+                            <div className={styles['section-item--title']}>
+                                Instagram
+                            </div>
+                            <div className={styles['section-item--content']}>
+                                {placeData?.instagram}
+                            </div>
+                        </div>
+                    }
+                    {placeData?.openingInfo &&
+                        <div className={styles['section-item']}>
+                            <div className={styles['section-item--title']}>
+                                Now is OPEN
+                            </div>
+                            <div className={styles['section-item--content']}>
+                                {placeData.openingInfo.map((day) => (
+                                    <div>{day}</div>
+                                ))}
+                            </div>
+                        </div>
+                    }
+                </div>
             </div>
         </div>
 
         <Button 
+            className={styles['button']}
             onClick={handleReportClick}
         >
             Report Issue

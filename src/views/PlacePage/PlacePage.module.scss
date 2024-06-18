@@ -60,9 +60,47 @@
 }
 
 .section {
-    padding: 0 var(--telegram-horizontal-paddings);
     &-heading {
+        padding: 16px var(--telegram-horizontal-paddings) 8px;
         text-align: left;
         color: var(--telegram-hint-color);
     }
+}
+
+.section-list {
+    display: flex;
+    flex-direction: column;
+    padding: 0 var(--telegram-horizontal-paddings);
+    background-color: var(--telegram-secondary-bg-color);
+    border-radius: 12px;
+}
+
+.section-item {
+
+    &:nth-child(1) {
+        border-top: none;
+    }
+    border-top: 1px solid var(--telegram-hint-color);
+    padding: 12px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    text-align: left;
+
+    &--title {
+        color: var(--telegram-hint-color);
+        font-size: 15px;
+        line-height: 20px;
+    }
+
+    &--content {
+        color: var(--telegram-text-color);
+        font-size: 17px;
+        line-height: 22px;
+    }
+}
+
+.button {
+    margin: 16px 0;
 }

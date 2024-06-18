@@ -15,10 +15,11 @@ export interface IProps {
      * Button size 100% of container
      */
     block?: boolean;
+    className?: string;
 }
 
 export default function Button(props: IProps) {
-  const {onClick, children, type = 'primary', disabled, block} = props
+  const {onClick, children, type = 'primary', disabled, block, className} = props
   return (
     <button 
       onClick={onClick}
@@ -26,7 +27,8 @@ export default function Button(props: IProps) {
         styles['button-container'],
         styles[`button-${type}`],
         disabled && styles['disabled'],
-        block && styles['block']
+        block && styles['block'],
+        className && className
         ].join(' ')
       }
     >

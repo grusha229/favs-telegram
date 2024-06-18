@@ -41,10 +41,14 @@ export default function CityPage() {
             .then((position) => setCoordinates(position?.coords))
     },[])
 
+    const token = localStorage.getItem("token");
+    console.log(token);
+
     useEffect(() => {
         setIsLoading(true);
+        const AUTH_TOKEN = USER_TOKEN ?? token;
         region.latitudeDelta && region.longitudeDelta &&
-            MapService.getPlacesWithTelegram(USER_TOKEN, USER_ID, region)
+            MapService.getPlacesWithTelegram(AUTH_TOKEN, USER_ID, region)
             .then((res) => res.data)
             .then((places) => {
                 setPlaces(places)

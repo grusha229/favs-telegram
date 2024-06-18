@@ -18,6 +18,7 @@ export interface IPlaceApiResponse {
       reservable: true,
       website: string
     },
+    openingInfo: string[],
     id: string,
     instagram: string,
     labels: string[],
